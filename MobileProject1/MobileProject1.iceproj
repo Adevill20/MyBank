@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>9cfee4d7-0d7a-43a7-8483-81158e87d640</ProjectGuid>
+    <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include=".abignore" />
+    <Content Include=".abproject" />
+    <Content Include=".app.json" />
+    <Content Include=".bowerrc" />
+    <Content Include=".debug.abproject" />
+    <Content Include=".release.abproject" />
+    <Content Include=".yo-rc.json" />
+    <Content Include="app.js" />
+    <Content Include="bower.json" />
+    <Content Include="bower_components\angular-animate\.bower.json" />
+    <Content Include="bower_components\angular-animate\angular-animate.js" />
+    <Content Include="bower_components\angular-animate\angular-animate.min.js" />
+    <Content Include="bower_components\angular-animate\angular-animate.min.js.map" />
+    <Content Include="bower_components\angular-animate\bower.json" />
+    <Content Include="bower_components\angular-animate\README.md" />
+    <Content Include="bower_components\angular-sanitize\.bower.json" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.js" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="bower_components\angular-sanitize\bower.json" />
+    <Content Include="bower_components\angular-sanitize\README.md" />
+    <Content Include="bower_components\angular-ui-router\.bower.json" />
+    <Content Include="bower_components\angular-ui-router\.gitignore" />
+    <Content Include="bower_components\angular-ui-router\.travis.yml" />
+    <Content Include="bower_components\angular-ui-router\bower.json" />
+    <Content Include="bower_components\angular-ui-router\component.json" />
+    <Content Include="bower_components\angular-ui-router\config\jsdoc.js" />
+    <Content Include="bower_components\angular-ui-router\config\karma.js" />
+    <Content Include="bower_components\angular-ui-router\Gruntfile.js" />
+    <Content Include="bower_components\angular-ui-router\lib\angular-1.1.5.js" />
+    <Content Include="bower_components\angular-ui-router\LICENSE" />
+    <Content Include="bower_components\angular-ui-router\package.json" />
+    <Content Include="bower_components\angular-ui-router\README.md" />
+    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="bower_components\angular-ui-router\release\doc\%24resolve.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\%24templateFactory.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\%24urlMatcherFactory.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\common.js.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\global.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\index.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\resolve.js.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\scripts\linenumber.js" />
+    <Content Include="bower_components\angular-ui-router\release\doc\scripts\prettify\Apache-License-2.0.txt" />
+    <Content Include="bower_components\angular-ui-router\release\doc\scripts\prettify\lang-css.js" />
+    <Content Include="bower_components\angular-ui-router\release\doc\scripts\prettify\prettify.js" />
+    <Content Include="bower_components\angular-ui-router\release\doc\styles\jsdoc-default.css" />
+    <Content Include="bower_components\angular-ui-router\release\doc\styles\prettify-jsdoc.css" />
+    <Content Include="bower_components\angular-ui-router\release\doc\styles\prettify-tomorrow.css" />
+    <Content Include="bower_components\angular-ui-router\release\doc\templateFactory.js.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\UrlMatcher.html" />
+    <Content Include="bower_components\angular-ui-router\release\doc\urlMatcherFactory.js.html" />
+    <Content Include="bower_components\angular-ui-router\sample\bootstrap.min.css" />
+    <Content Include="bower_components\angular-ui-router\sample\contacts.detail.html" />
+    <Content Include="bower_components\angular-ui-router\sample\contacts.detail.item.edit.html" />
+    <Content Include="bower_components\angular-ui-router\sample\contacts.detail.item.html" />
+    <Content Include="bower_components\angular-ui-router\sample\contacts.html" />
+    <Content Include="bower_components\angular-ui-router\sample\contacts.json" />
+    <Content Include="bower_components\angular-ui-router\sample\contacts.list.html" />
+    <Content Include="bower_components\angular-ui-router\sample\factory.js" />
+    <Content Include="bower_components\angular-ui-router\sample\index.html" />
+    <Content Include="bower_components\angular-ui-router\sample\module.js" />
+    <Content Include="bower_components\angular-ui-router\sample\states.js" />
+    <Content Include="bower_components\angular-ui-router\sample\styles.css" />
+    <Content Include="bower_components\angular-ui-router\src\common.js" />
+    <Content Include="bower_components\angular-ui-router\src\compat.js" />
+    <Content Include="bower_components\angular-ui-router\src\resolve.js" />
+    <Content Include="bower_components\angular-ui-router\src\state.js" />
+    <Content Include="bower_components\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="bower_components\angular-ui-router\src\stateFilters.js" />
+    <Content Include="bower_components\angular-ui-router\src\templateFactory.js" />
+    <Content Include="bower_components\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="bower_components\angular-ui-router\src\urlRouter.js" />
+    <Content Include="bower_components\angular-ui-router\src\view.js" />
+    <Content Include="bower_components\angular-ui-router\src\viewDirective.js" />
+    <Content Include="bower_components\angular-ui-router\test\compat\matchers.js" />
+    <Content Include="bower_components\angular-ui-router\test\compat\routeParamsSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\compat\routeSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\debug.js" />
+    <Content Include="bower_components\angular-ui-router\test\lib\angular-mocks-1.1.5.js" />
+    <Content Include="bower_components\angular-ui-router\test\resolveSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\stateDirectivesSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\stateFiltersSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\stateSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\templateFactorySpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\testUtils.js" />
+    <Content Include="bower_components\angular-ui-router\test\urlMatcherFactorySpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\urlRouterSpec.js" />
+    <Content Include="bower_components\angular-ui-router\test\viewDirectiveSpec.js" />
+    <Content Include="bower_components\angular\.bower.json" />
+    <Content Include="bower_components\angular\angular-csp.css" />
+    <Content Include="bower_components\angular\angular.js" />
+    <Content Include="bower_components\angular\angular.min.js" />
+    <Content Include="bower_components\angular\angular.min.js.gzip" />
+    <Content Include="bower_components\angular\angular.min.js.map" />
+    <Content Include="bower_components\angular\bower.json" />
+    <Content Include="bower_components\angular\README.md" />
+    <Content Include="bower_components\everlive\.bower.json" />
+    <Content Include="bower_components\everlive\.gitattributes" />
+    <Content Include="bower_components\everlive\min\everlive.all.min.js" />
+    <Content Include="bower_components\everlive\min\everlive.min.js" />
+    <Content Include="bower_components\everlive\min\everlive.nativescript.min.js" />
+    <Content Include="bower_components\everlive\min\jstz.min.js" />
+    <Content Include="bower_components\everlive\min\kendo.data.everlive.min.js" />
+    <Content Include="bower_components\everlive\min\reqwest.min.js" />
+    <Content Include="bower_components\everlive\min\rsvp.min.js" />
+    <Content Include="bower_components\everlive\min\underscore.min.js" />
+    <Content Include="bower_components\everlive\src\everlive.all.js" />
+    <Content Include="bower_components\everlive\src\everlive.js" />
+    <Content Include="bower_components\everlive\src\everlive.nativescript.js" />
+    <Content Include="bower_components\everlive\src\jstz.js" />
+    <Content Include="bower_components\everlive\src\kendo.data.everlive.js" />
+    <Content Include="bower_components\everlive\src\reqwest.js" />
+    <Content Include="bower_components\everlive\src\rsvp.js" />
+    <Content Include="bower_components\everlive\src\underscore.js" />
+    <Content Include="bower_components\ionic\.bower.json" />
+    <Content Include="bower_components\ionic\bower.json" />
+    <Content Include="bower_components\ionic\CHANGELOG.md" />
+    <Content Include="bower_components\ionic\docs\docs.config.js" />
+    <Content Include="bower_components\ionic\docs\filters\capital.js" />
+    <Content Include="bower_components\ionic\docs\generate-versions.js" />
+    <Content Include="bower_components\ionic\docs\ignore.words" />
+    <Content Include="bower_components\ionic\docs\inline-tag-defs\link.js" />
+    <Content Include="bower_components\ionic\docs\processors\index-page.js" />
+    <Content Include="bower_components\ionic\docs\processors\keywords.js" />
+    <Content Include="bower_components\ionic\docs\processors\latest-version.js" />
+    <Content Include="bower_components\ionic\docs\processors\pages-data.js" />
+    <Content Include="bower_components\ionic\docs\processors\version-data.js" />
+    <Content Include="bower_components\ionic\docs\README.md" />
+    <Content Include="bower_components\ionic\docs\tag-defs\index.js" />
+    <Content Include="bower_components\ionic\docs\templates\api\api.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\componentGroup.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\controller.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\directive.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\filter.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\function.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\object.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\provider.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\service.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\type.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\api\utility.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\index.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\events.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\macros.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\methods.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\properties.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\returns.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\this.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\lib\yaml.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\pages-data.template.html" />
+    <Content Include="bower_components\ionic\docs\templates\version-data.template.json" />
+    <Content Include="bower_components\ionic\gulpfile.js" />
+    <Content Include="bower_components\ionic\LICENSE" />
+    <Content Include="bower_components\ionic\README.md" />
+    <Content Include="bower_components\ionic\release\css\ionic.css" />
+    <Content Include="bower_components\ionic\release\css\ionic.min.css" />
+    <Content Include="bower_components\ionic\release\fonts\ionicons.eot" />
+    <Content Include="bower_components\ionic\release\fonts\ionicons.svg" />
+    <Content Include="bower_components\ionic\release\fonts\ionicons.ttf" />
+    <Content Include="bower_components\ionic\release\fonts\ionicons.woff" />
+    <Content Include="bower_components\ionic\release\js\ionic-angular.js" />
+    <Content Include="bower_components\ionic\release\js\ionic-angular.min.js" />
+    <Content Include="bower_components\ionic\release\js\ionic.bundle.js" />
+    <Content Include="bower_components\ionic\release\js\ionic.bundle.min.js" />
+    <Content Include="bower_components\ionic\release\js\ionic.js" />
+    <Content Include="bower_components\ionic\release\js\ionic.min.js" />
+    <Content Include="bower_components\ionic\release\version.json" />
+    <Content Include="bower_components\ionic\scss\ionic.scss" />
+    <Content Include="bower_components\ionic\scss\ionicons\ionicons.scss" />
+    <Content Include="bower_components\ionic\scss\ionicons\_ionicons-animation.scss" />
+    <Content Include="bower_components\ionic\scss\ionicons\_ionicons-font.scss" />
+    <Content Include="bower_components\ionic\scss\ionicons\_ionicons-icons.scss" />
+    <Content Include="bower_components\ionic\scss\ionicons\_ionicons-variables.scss" />
+    <Content Include="bower_components\ionic\scss\_action-sheet.scss" />
+    <Content Include="bower_components\ionic\scss\_animations.scss" />
+    <Content Include="bower_components\ionic\scss\_badge.scss" />
+    <Content Include="bower_components\ionic\scss\_bar.scss" />
+    <Content Include="bower_components\ionic\scss\_button-bar.scss" />
+    <Content Include="bower_components\ionic\scss\_button.scss" />
+    <Content Include="bower_components\ionic\scss\_checkbox.scss" />
+    <Content Include="bower_components\ionic\scss\_form.scss" />
+    <Content Include="bower_components\ionic\scss\_grid.scss" />
+    <Content Include="bower_components\ionic\scss\_items.scss" />
+    <Content Include="bower_components\ionic\scss\_list.scss" />
+    <Content Include="bower_components\ionic\scss\_menu.scss" />
+    <Content Include="bower_components\ionic\scss\_mixins.scss" />
+    <Content Include="bower_components\ionic\scss\_modal.scss" />
+    <Content Include="bower_components\ionic\scss\_platform.scss" />
+    <Content Include="bower_components\ionic\scss\_popup.scss" />
+    <Content Include="bower_components\ionic\scss\_radio.scss" />
+    <Content Include="bower_components\ionic\scss\_range.scss" />
+    <Content Include="bower_components\ionic\scss\_reset.scss" />
+    <Content Include="bower_components\ionic\scss\_scaffolding.scss" />
+    <Content Include="bower_components\ionic\scss\_slide-box.scss" />
+    <Content Include="bower_components\ionic\scss\_split-pane.scss" />
+    <Content Include="bower_components\ionic\scss\_tabs.scss" />
+    <Content Include="bower_components\ionic\scss\_toggle.scss" />
+    <Content Include="bower_components\ionic\scss\_type.scss" />
+    <Content Include="bower_components\ionic\scss\_util.scss" />
+    <Content Include="bower_components\ionic\scss\_variables.scss" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\.bower.json" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\bower.json" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\js\jquery.min.js" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\js\kendo.mobile.min.js" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\README.md" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\images\back.png" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\images\kendoui.svg" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\images\kendoui.ttf" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\images\kendoui.woff" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\images\wp8_icons.png" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\images\wp8_inverseicons.png" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\styles\kendo.mobile.all.min.css" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\typescript\jquery.d.ts" />
+    <Content Include="bower_components\kendo-ui-appbuilder-core\typescript\kendo.mobile.d.ts" />
+    <Content Include="cordova.android.js" />
+    <Content Include="cordova.ios.js" />
+    <Content Include="cordova.wp8.js" />
+    <Content Include="green_background.jpg" />
+    <Content Include="index.html" />
+    <Content Include="map\map.js" />
+    <Content Include="map\map.html" />
+    <Content Include="styles\main.css" />
+    <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
+    <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
+    <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
+    <Resource Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png" />
+    <Resource Include="App_Resources\iOS\Default-568h@2x.png" />
+    <Resource Include="App_Resources\iOS\Default-667h.png" />
+    <Resource Include="App_Resources\iOS\Default-736h.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape-667h.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape-736h.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape@2x.png" />
+    <Resource Include="App_Resources\iOS\Default-Portrait.png" />
+    <Resource Include="App_Resources\iOS\Default-Portrait@2x.png" />
+    <Resource Include="App_Resources\iOS\Default.png" />
+    <Resource Include="App_Resources\iOS\Default@2x.png" />
+    <Resource Include="App_Resources\iOS\icon-40.png" />
+    <Resource Include="App_Resources\iOS\icon-40@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-40@3x.png" />
+    <Resource Include="App_Resources\iOS\icon-60.png" />
+    <Resource Include="App_Resources\iOS\icon-60@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-60@3x.png" />
+    <Resource Include="App_Resources\iOS\icon-72.png" />
+    <Resource Include="App_Resources\iOS\icon-72@2x.png" />
+    <Resource Include="App_Resources\iOS\icon-76.png" />
+    <Resource Include="App_Resources\iOS\icon-76@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small-50.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small-50@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small@2x.png" />
+    <Resource Include="App_Resources\iOS\icon.png" />
+    <Resource Include="App_Resources\iOS\icon@2x.png" />
+    <Resource Include="App_Resources\WP8\ApplicationIcon.png" />
+    <Resource Include="App_Resources\WP8\SplashScreenImage.jpg" />
+    <Resource Include="App_Resources\WP8\Assets\BadgeLogo.png" />
+    <Resource Include="App_Resources\WP8\Assets\Logo.png" />
+    <Resource Include="App_Resources\WP8\Assets\SplashScreen.png" />
+    <Resource Include="App_Resources\WP8\Assets\SquareTile150x150.png" />
+    <Resource Include="App_Resources\WP8\Assets\SquareTile71x71.png" />
+    <Resource Include="App_Resources\WP8\Assets\StoreLogo.png" />
+    <Resource Include="App_Resources\WP8\Assets\WideLogo.png" />
+    <Resource Include="App_Resources\WP8\Tiles\Iconic\110x110.png" />
+    <Resource Include="App_Resources\WP8\Tiles\Iconic\202x202.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Resources\" />
+    <Folder Include="App_Resources\Android\" />
+    <Folder Include="App_Resources\Android\drawable-hdpi\" />
+    <Folder Include="App_Resources\Android\drawable-ldpi\" />
+    <Folder Include="App_Resources\Android\drawable-mdpi\" />
+    <Folder Include="App_Resources\Android\drawable-nodpi\" />
+    <Folder Include="App_Resources\iOS\" />
+    <Folder Include="App_Resources\WP8\" />
+    <Folder Include="App_Resources\WP8\Assets\" />
+    <Folder Include="App_Resources\WP8\Tiles\" />
+    <Folder Include="App_Resources\WP8\Tiles\Iconic\" />
+    <Folder Include="bower_components\" />
+    <Folder Include="bower_components\angular-animate\" />
+    <Folder Include="bower_components\angular-sanitize\" />
+    <Folder Include="bower_components\angular-ui-router\" />
+    <Folder Include="bower_components\angular-ui-router\config\" />
+    <Folder Include="bower_components\angular-ui-router\lib\" />
+    <Folder Include="bower_components\angular-ui-router\release\" />
+    <Folder Include="bower_components\angular-ui-router\release\doc\" />
+    <Folder Include="bower_components\angular-ui-router\release\doc\scripts\" />
+    <Folder Include="bower_components\angular-ui-router\release\doc\scripts\prettify\" />
+    <Folder Include="bower_components\angular-ui-router\release\doc\styles\" />
+    <Folder Include="bower_components\angular-ui-router\sample\" />
+    <Folder Include="bower_components\angular-ui-router\src\" />
+    <Folder Include="bower_components\angular-ui-router\test\" />
+    <Folder Include="bower_components\angular-ui-router\test\compat\" />
+    <Folder Include="bower_components\angular-ui-router\test\lib\" />
+    <Folder Include="bower_components\angular\" />
+    <Folder Include="bower_components\everlive\" />
+    <Folder Include="bower_components\everlive\min\" />
+    <Folder Include="bower_components\everlive\src\" />
+    <Folder Include="bower_components\ionic\" />
+    <Folder Include="bower_components\ionic\docs\" />
+    <Folder Include="bower_components\ionic\docs\filters\" />
+    <Folder Include="bower_components\ionic\docs\inline-tag-defs\" />
+    <Folder Include="bower_components\ionic\docs\processors\" />
+    <Folder Include="bower_components\ionic\docs\tag-defs\" />
+    <Folder Include="bower_components\ionic\docs\templates\" />
+    <Folder Include="bower_components\ionic\docs\templates\api\" />
+    <Folder Include="bower_components\ionic\docs\templates\lib\" />
+    <Folder Include="bower_components\ionic\release\" />
+    <Folder Include="bower_components\ionic\release\css\" />
+    <Folder Include="bower_components\ionic\release\fonts\" />
+    <Folder Include="bower_components\ionic\release\js\" />
+    <Folder Include="bower_components\ionic\scss\" />
+    <Folder Include="bower_components\ionic\scss\ionicons\" />
+    <Folder Include="bower_components\kendo-ui-appbuilder-core\" />
+    <Folder Include="bower_components\kendo-ui-appbuilder-core\js\" />
+    <Folder Include="bower_components\kendo-ui-appbuilder-core\styles\" />
+    <Folder Include="bower_components\kendo-ui-appbuilder-core\styles\images\" />
+    <Folder Include="bower_components\kendo-ui-appbuilder-core\typescript\" />
+    <Folder Include="map\" />
+    <Folder Include="Plugins\" />
+    <Folder Include="styles\" />
+  </ItemGroup>
+  <Import Project="$(IceniumTargets)Build.targets" />
+  <!--
+    TODO: Uncomment this code if you need to customize the build process.
+    <Target Name="BeforeBuild">
+        <Message Text="TODO: Implement BeforeBuild" Importance="high" />
+    </Target>
+
+    <Target Name="AfterBuild">
+        <Message Text="TODO: Implement AfterBuild" Importance="high" />
+    </Target>
+    -->
+</Project>

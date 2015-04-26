@@ -1,0 +1,57 @@
+{
+  "ProjectName": "AppBuilder1",
+  "ProjectGuid": "de70417c-7c6c-4330-bc9e-4217fac2320a",
+  "projectVersion": 1,
+  "AppIdentifier": "za.co.pinpointmobilesolutions.mybank",
+  "DisplayName": "MyBank",
+  "Author": "Anton de Villiers",
+  "Description": "PinPoint MyBank",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1"
+  ],
+  "iOSBackgroundMode": [
+    "location"
+  ],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.ACCESS_NETWORK_STATE"
+  ],
+  "DeviceOrientations": [
+    "Portrait"
+  ],
+  "AndroidHardwareAcceleration": "true",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "PinPoint MyBank",
+  "WP8Publisher": "PinPoint Mobile Solutions",
+  "WP8Capabilities": [
+    "ID_CAP_IDENTITY_DEVICE",
+    "ID_CAP_LOCATION",
+    "ID_CAP_MAP",
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{9b129e57-e87c-4913-8060-f520be77d487}",
+  "WP8ProductID": "{65294c71-6058-486c-8d4e-a8e981d34a57}",
+  "WPSdk": "8.1",
+  "WP8PackageIdentityName": "1234Telerik.AppBuilder1",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ],
+  "CorePlugins": [
+    "org.apache.cordova.battery-status",
+    "org.apache.cordova.device",
+    "org.apache.cordova.geolocation",
+    "org.apache.cordova.network-information",
+    "org.apache.cordova.splashscreen"
+  ]
+}

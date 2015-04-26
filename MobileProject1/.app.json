@@ -1,0 +1,34 @@
+{
+  "type": "kendo-ui-mobile",
+  "name": "Kendo UI Mobile App",
+  "navigation": "drawer",
+  "views": [
+    {
+      "type": "view",
+      "name": "home",
+      "title": "Select a Bank",
+      "addToNavigation": true,
+      "icon": "\\E0AF",
+      "components": []
+    },
+    {
+      "type": "view",
+      "name": "homeView",
+      "title": "Nearest Services",
+      "addToNavigation": true,
+      "icon": "\\E0DC",
+      "components": []
+    },
+    {
+      "type": "view",
+      "name": "map",
+      "title": "Directions to Service",
+      "addToNavigation": true,
+      "icon": "\\E0B4",
+      "components": []
+    }
+  ],
+  "view": "home",
+  "skin": "flat",
+  "dataProviders": []
+}
