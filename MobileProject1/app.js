@@ -1,4 +1,4 @@
-( function (){
+(function () {
 
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
@@ -9,7 +9,7 @@
 
     if (window.cordova) {
         // this function is called by Cordova when the application is loaded by the device
-        document.addEventListener('deviceready', function() {
+        document.addEventListener('deviceready', function () {
 
             // hide the splash screen as soon as the app is ready. otherwise
             // Cordova will wait 5 very long seconds to do it for you.
@@ -20,7 +20,7 @@
     window.app = app;
 }());
 
-angular.module('ionicApp',['ionic'])
+angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(5);
     $ionicConfigProvider.views.transition("ios");
@@ -67,8 +67,6 @@ angular.module('ionicApp',['ionic'])
             }
         }
     });
-
-    $urlRouterProvider.otherwise("/main/home");
 
 })
 

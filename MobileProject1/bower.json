@@ -1,11 +1,8 @@
 {
-  "name": "kendo-ui-mobile-app",
+  "name": "pinpoint-mybank",
   "private": true,
   "dependencies": {
-    "kendo-ui-appbuilder-core": "*",
-    "everlive": ">=1.2.14",
-    "ionic": "~0.9.27",
-    "orbicular": "~3.0.0"
+    "ionic": ">=0.9.27"
   },
   "devDependencies": {}
 }
