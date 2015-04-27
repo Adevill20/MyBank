@@ -20,15 +20,15 @@
     window.app = app;
 }());
 
-angular.module('ionicApp', ['ionic'])
+angular.module('ionicApp',['ionic'])
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(5);
-	$ionicConfigProvider.views.transition("ios");
-	$ionicConfigProvider.backButton.icon("ion-chevron-left");
-	$ionicConfigProvider.navBar.alignTitle("center");
-	$ionicConfigProvider.navBar.positionPrimaryButtons("left");
+    $ionicConfigProvider.views.transition("ios");
+    $ionicConfigProvider.backButton.icon("ion-chevron-left");
+    $ionicConfigProvider.navBar.alignTitle("center");
+    $ionicConfigProvider.navBar.positionPrimaryButtons("left");
 
-	$stateProvider
+    $stateProvider
       .state('main', {
           url: "/main",
           abstract: true,
@@ -68,10 +68,10 @@ angular.module('ionicApp', ['ionic'])
         }
     });
 
-	$urlRouterProvider.otherwise("/main/home");
+    $urlRouterProvider.otherwise("/main/home");
 
 })
 
-.controller('HomeTabCtrl', function($scope) {
+.controller('HomeTabCtrl', function ($scope) {
     //console.log('HomeTabCtrl');
 });
