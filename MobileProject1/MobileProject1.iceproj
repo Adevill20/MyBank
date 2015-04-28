@@ -235,8 +235,6 @@
     <Content Include="bower_components\kendo-ui-appbuilder-core\styles\kendo.mobile.all.min.css" />
     <Content Include="bower_components\kendo-ui-appbuilder-core\typescript\jquery.d.ts" />
     <Content Include="bower_components\kendo-ui-appbuilder-core\typescript\kendo.mobile.d.ts" />
-    <Content Include="bower_components\orbicular\orbicular.js" />
-    <Content Include="bower_components\orbicular\_orbicular.scss" />
     <Content Include="cordova.android.js" />
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
@@ -343,7 +341,6 @@
     <Folder Include="bower_components\kendo-ui-appbuilder-core\styles\" />
     <Folder Include="bower_components\kendo-ui-appbuilder-core\styles\images\" />
     <Folder Include="bower_components\kendo-ui-appbuilder-core\typescript\" />
-    <Folder Include="bower_components\orbicular\" />
     <Folder Include="map\" />
     <Folder Include="Plugins\" />
     <Folder Include="styles\" />

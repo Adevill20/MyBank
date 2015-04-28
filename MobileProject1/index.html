@@ -35,11 +35,13 @@
             </ion-nav-buttons>
             <ion-content class="padding" style="background-color: transparent;">
                 <ul class="list" style="background-color: transparent;">
-                    <li class="item" style="background-color: transparent; border: none;">
-                            Bank 1
+                    <li ng-repeat="(BankName,TotalServices) in banks" class="item" style="background-color: transparent; border: none;">
+                        <div class="bank-name"><div>{{BankName}}</div></div>
+                        <div class="bank-wrapper" ng-style="{'font-size': ((25 + 5)/3)+'px'}">
+                            <div class="progress">{{TotalServices}}</div>
                             <div round-progress
-                                 max="100"
-                                 current="55"
+                                 max="5"
+                                 current="3"
                                  color="#fff"
                                  bgcolor=rgba(0,0,0,0.5);
                                  radius="25"
@@ -49,28 +51,11 @@
                                  clockwise="true"
                                  iterations="50"
                                  animation="easeInOutQuart"></div>
-                        </li>
-                        <li class="item" style="background-color: transparent; border: none;">
-                            <p>Bank 2</p>
-                        </li>
-                        <li class="item">
-                            <p>Bank 3</p>
-                        </li>
-                        <li class="item">
-                            <p>Bank 4</p>
-                        </li>
-                        <li class="item">
-                            <p>Bank 5</p>
-                        </li>
-                        <li class="item">
-                            <p>Bank 6</p>
-                        </li>
+                            <a class="button button-light button-clear icon icon-right ion-chevron-right bank-selected-button" href="#/main/facts"></a>
+                        </div>
+                        
+                    </li>
                 </ul>
-                <p>
-                    <a class=" button button-light button-clear icon icon-right ion-chevron-right" href="#/main/facts">
-                        Scientific Facts
-                    </a>
-                </p>
             </ion-content>
         </ion-view>
     </script>
