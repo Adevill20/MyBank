@@ -1,5 +1,6 @@
 var longitude;
 var latitude;
+
 var banklist = {
     "ABSA": "2",
     "Capitec": "2",
@@ -9,7 +10,7 @@ var banklist = {
     "Bla Bla": "2"
 };
 
-var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
+var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress', 'cordovaGeolocationModule'])
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.transition("ios");
@@ -61,63 +62,66 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
 
 })
 
-.service("MapService", function ($http, $q) {
+.service("MapService", function ($http, $q, $rootScope, cordovaGeolocationService) {
     return ({
-        test1: test1
+        Start: Start
     });
 
+    function Start() {
+        GetDetails();
+    }
 
-    function test1() {
-        var request = $http.get('http://places.cit.api.here.com/places/v1/discover/search?at=52.5310%2C13.3848&q=Italian+pizza&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg')
+    function GetDetails() {
+
+        cordovaGeolocationService.getCurrentPosition(function (position) {
+            alert(
+                'Latitude: ' + position.coords.latitude + '\n' +
+                'Longitude: ' + position.coords.longitude + '\n' +
+                'Altitude: ' + position.coords.altitude + '\n' +
+                'Accuracy: ' + position.coords.accuracy + '\n' +
+                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                'Heading: ' + position.coords.heading + '\n' +
+                'Speed: ' + position.coords.speed + '\n' +
+                'Timestamp: ' + position.timestamp + '\n'
+            );
+            longitude = position.coords.longitude;
+            latitude = position.coords.latitude;
+        });
+
+        var request = $http.get('https://places.demo.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg')
         .success(function (data, status, headers, config) {
-            console.log('GotAJAX: ' + data);
-            // this callback will be called asynchronously
-            // when the response is available
+            angular.forEach(data.results.items, function (object) {
+                //if (item.object[0] === 'postal_code') {
+                //    zipCode = result.address_components[0].short_name;
+                //}
+                console.log(object.title + '\n');
+            });
         })
         .error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
+            console.log('Error : ' + status);
         });
-        return (request.then(handleSuccess, handleError));
+        return (request);
     }
-
-    function handleSuccess(response) {
-        console.log('GotAJAX: ' + response.data);
-        return (response.data);
-    }
-
-    function handleError(response) {
-
-        // The API response from the server should be returned in a
-        // nomralized format. However, if the request was not handled by the
-        // server (or what not handles properly - ex. server error), then we
-        // may have to normalize it on our end, as best we can.
-        if (
-            !angular.isObject(response.data) ||
-            !response.data.message
-            ) {
-
-            return ($q.reject("An unknown error occurred."));
-        }
-
-        // Otherwise, use expected error message.
-        return ($q.reject(response.data.message));
-    }
+    
 })
 
 .controller('HomeTabCtrl', function ($scope, MapService) {
     $scope.banks = banklist;
-    MapService.test1();
-    //console.log('HomeTabCtrl');
+    MapService.Start();
 });
 
 (function () {
 
+    if (window.cordova) {
+        // this function is called by Cordova when the application is loaded by the device
+        document.addEventListener('deviceready', onDeviceReady, false);
+    }
+
     function onDeviceReady() {
         if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
-        document.addEventListener("online", onOnline, false);
-        document.addEventListener("resume", onResume, false);
-        loadMapsApi();
+        //document.addEventListener("online", onOnline, false);
+        //document.addEventListener("resume", onResume, false);
+        //loadMapsApi();
     }
 
     function onOnline() {
@@ -138,15 +142,11 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
     function OnGotLocation(position) {
         longitude = position.coords.longitude;
         latitude = position.coords.latitude;
-        console.log('GotLocation: ' + longitude + ' , ' + latitude + '\n');
+        //console.log('GotLocation: ' + latitude + ' , ' + longitude + '\n');
+        //app.MapService.Start();
     }
 
     function OnFailed(error) {
         alert('code: ' + error.code + '\n' + 'message' + error.message + '\n');
-    }
-
-    if (window.cordova) {
-        // this function is called by Cordova when the application is loaded by the device
-        document.addEventListener('deviceready', onDeviceReady, false);
     }
 }());
