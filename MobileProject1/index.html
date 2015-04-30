@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ionicApp">
-
+<html>
 <head>
     <title>MyBank</title>
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" charset="utf-8">
@@ -13,9 +12,8 @@
 
     <script src="bower_components/ionic/release/js/ionic.bundle.js" type="text/javascript"></script>
     <script src="roundProgress.js" type="text/javascript"></script>
-    <script src="cordovaGeolocationModule.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
-	
+
 </head>
 
 <body style="background-image: url('green_background.jpg');">
@@ -36,22 +34,11 @@
             </ion-nav-buttons>
             <ion-content class="padding" style="background-color: transparent;">
                 <ul class="list" style="background-color: transparent;">
-                    <li ng-repeat="(BankName,TotalServices) in banks" class="item" style="background-color: transparent; border: none;">
-                        <div class="bank-name"><div>{{BankName}}</div></div>
+                    <li ng-repeat="bank in banks" class="item" style="background-color: transparent; border: none;">
+                        <div class="bank-name">{{bank.BankName}}</div>
                         <div class="bank-wrapper" ng-style="{'font-size': ((25 + 5)/3)+'px'}">
-                            <div class="progress">{{TotalServices}}</div>
-                            <div round-progress
-                                 max="5"
-                                 current="3"
-                                 color="#fff"
-                                 bgcolor=rgba(0,0,0,0.5);
-                                 radius="25"
-                                 stroke="5"
-                                 semi="false"
-                                 rounded="false"
-                                 clockwise="true"
-                                 iterations="50"
-                                 animation="easeInOutQuart"></div>
+                            <div class="progress">{{bank.BankTotal}}</div>
+                            <div my-customer total="{{bank.BankTotal}}"></div>
                             <a class="button button-light button-clear icon icon-right ion-chevron-right bank-selected-button" href="#/main/facts"></a>
                         </div>
                         

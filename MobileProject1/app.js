@@ -1,16 +1,25 @@
-var longitude;
-var latitude;
+var Nr_of_Absa = 0;
+var Nr_of_Nedbank = 0;
+var Nr_of_Capitec = 0;
+var Nr_of_FNB = 0;
+var Nr_of_Stdb = 0;
+var Nr_of_blabla = 0;
+var TotalServices = 0;
 
-var banklist = {
-    "ABSA": "2",
-    "Capitec": "2",
-    "FNB": "3",
-    "Nedbank": "1",
-    "Standardbank": "3",
-    "Bla Bla": "2"
-};
+var banklist = [
+    {BankName: "ABSA", BankTotal: Nr_of_Absa},
+    {BankName: "Capitec", BankTotal: Nr_of_Capitec},
+    {BankName: "FNB", BankTotal: Nr_of_FNB},
+    {BankName: "Nedbank", BankTotal: Nr_of_Nedbank},
+    {BankName: "Standardbank", BankTotal: Nr_of_Stdb},
+    {BankName: "Bla Bla", BankTotal: Nr_of_blabla}];
 
-var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress', 'cordovaGeolocationModule'])
+document.addEventListener('deviceready', function onDeviceReady() {
+    if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
+    angular.bootstrap(document, ['ionicApp']);
+}, false);
+
+var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.transition("ios");
@@ -62,91 +71,101 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress', 'co
 
 })
 
-.service("MapService", function ($http, $q, $rootScope, cordovaGeolocationService) {
+.service("MapService", function ($http, $rootScope) {
     return ({
         Start: Start
     });
 
     function Start() {
-        GetDetails();
+        GetPos();
     }
 
-    function GetDetails() {
+    function GetPos() {
 
-        cordovaGeolocationService.getCurrentPosition(function (position) {
-            alert(
-                'Latitude: ' + position.coords.latitude + '\n' +
-                'Longitude: ' + position.coords.longitude + '\n' +
-                'Altitude: ' + position.coords.altitude + '\n' +
-                'Accuracy: ' + position.coords.accuracy + '\n' +
-                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                'Heading: ' + position.coords.heading + '\n' +
-                'Speed: ' + position.coords.speed + '\n' +
-                'Timestamp: ' + position.timestamp + '\n'
-            );
-            longitude = position.coords.longitude;
-            latitude = position.coords.latitude;
-        });
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(GotPosition, PosError);
+        }
+        else {
+            error = "Geolocation is not supported by this browser.";
+        };
+    }
+
+    function GotPosition(position) {
+        longitude = position.coords.longitude;
+        latitude = position.coords.latitude;
 
         var request = $http.get('https://places.demo.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg')
         .success(function (data, status, headers, config) {
             angular.forEach(data.results.items, function (object) {
-                //if (item.object[0] === 'postal_code') {
-                //    zipCode = result.address_components[0].short_name;
-                //}
-                console.log(object.title + '\n');
+                switch (object.title) {
+                    case "ABSA":
+                        Nr_of_Absa++;
+                        break;
+                    case "First National Bank":
+                        Nr_of_FNB++;
+                        break;
+                    case "Standard Bank":
+                        Nr_of_Stdb++;
+                        break;
+                    case "Nedbank":
+                        Nr_of_Nedbank++;
+                        break;
+                    case "Capitec":
+                        Nr_of_Capitec++;
+                        break;
+                    case "blabla":
+                        Nr_of_blabla++;
+                        break;
+                }
             });
+            console.log('Banks Loaded');
+            TotalServices = Nr_of_Absa + Nr_of_Nedbank + Nr_of_Capitec + Nr_of_FNB + Nr_of_Stdb + Nr_of_blabla;
         })
         .error(function (data, status, headers, config) {
             console.log('Error : ' + status);
         });
-        return (request);
+    }
+
+    function PosError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                error = "User denied the request for Geolocation."
+                break;
+            case error.POSITION_UNAVAILABLE:
+                error = "Location information is unavailable."
+                break;
+            case error.TIMEOUT:
+                error = "The request to get user location timed out."
+                break;
+            case error.UNKNOWN_ERROR:
+                error = "An unknown error occurred."
+                break;
+        }
     }
     
 })
 
-.controller('HomeTabCtrl', function ($scope, MapService) {
-    $scope.banks = banklist;
+.controller('HomeTabCtrl',function ($scope, MapService) {
     MapService.Start();
-});
+    $scope.banks = banklist;
+    $scope.TotalServices = TotalServices;
+})
 
-(function () {
-
-    if (window.cordova) {
-        // this function is called by Cordova when the application is loaded by the device
-        document.addEventListener('deviceready', onDeviceReady, false);
-    }
-
-    function onDeviceReady() {
-        if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
-        //document.addEventListener("online", onOnline, false);
-        //document.addEventListener("resume", onResume, false);
-        //loadMapsApi();
-    }
-
-    function onOnline() {
-        loadMapsApi();
-    }
-
-    function onResume() {
-        loadMapsApi();
-    }
-
-    function loadMapsApi() {
-        if (navigator.connection.type === Connection.NONE) {
-            return;
+.directive('myCustomer', function () {
+    return {
+        template: function (elem, attr) {
+            return '<div round-progress ' +
+            ' max="' + TotalServices + '"' +
+            ' current="' + attr.total + '"' +
+            ' color="#fff"' +
+            ' bgcolor=rgba(0,0,0,0.5);' +
+            ' radius="25"' +
+            ' stroke="5"' +
+            ' semi="false"' +
+            ' rounded="false"' +
+            ' clockwise="true"' +
+            ' iterations="50"' +
+            ' animation="easeInOutQuart"></div>' ;
         }
-        navigator.geolocation.getCurrentPosition(OnGotLocation, OnFailed);
-    }
-
-    function OnGotLocation(position) {
-        longitude = position.coords.longitude;
-        latitude = position.coords.latitude;
-        //console.log('GotLocation: ' + latitude + ' , ' + longitude + '\n');
-        //app.MapService.Start();
-    }
-
-    function OnFailed(error) {
-        alert('code: ' + error.code + '\n' + 'message' + error.message + '\n');
-    }
-}());
+    };
+});

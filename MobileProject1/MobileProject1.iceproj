@@ -238,7 +238,6 @@
     <Content Include="cordova.android.js" />
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
-    <Content Include="cordovaGeolocationModule.js" />
     <Content Include="green_background.jpg" />
     <Content Include="index.html" />
     <Content Include="map\map.js" />

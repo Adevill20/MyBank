@@ -1,6 +1,5 @@
 {
   "CorePlugins": [
-    "org.apache.cordova.battery-status",
     "org.apache.cordova.device",
     "org.apache.cordova.device-orientation",
     "org.apache.cordova.geolocation",

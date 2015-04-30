@@ -22,7 +22,8 @@
     "android.permission.ACCESS_NETWORK_STATE"
   ],
   "DeviceOrientations": [
-    "Portrait"
+    "Portrait",
+    "Landscape"
   ],
   "AndroidHardwareAcceleration": "true",
   "iOSStatusBarStyle": "Default",
@@ -48,7 +49,6 @@
     "ID_RESOLUTION_HD720P"
   ],
   "CorePlugins": [
-    "org.apache.cordova.battery-status",
     "org.apache.cordova.device",
     "org.apache.cordova.geolocation",
     "org.apache.cordova.network-information",
