@@ -1,25 +1,9 @@
-var Nr_of_Absa = 0;
-var Nr_of_Nedbank = 0;
-var Nr_of_Capitec = 0;
-var Nr_of_FNB = 0;
-var Nr_of_Stdb = 0;
-var Nr_of_blabla = 0;
-var TotalServices = 0;
-
-var banklist = [
-    {BankName: "ABSA", BankTotal: Nr_of_Absa},
-    {BankName: "Capitec", BankTotal: Nr_of_Capitec},
-    {BankName: "FNB", BankTotal: Nr_of_FNB},
-    {BankName: "Nedbank", BankTotal: Nr_of_Nedbank},
-    {BankName: "Standardbank", BankTotal: Nr_of_Stdb},
-    {BankName: "Bla Bla", BankTotal: Nr_of_blabla}];
-
 document.addEventListener('deviceready', function onDeviceReady() {
     if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
     angular.bootstrap(document, ['ionicApp']);
 }, false);
 
-var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
+var app = angular.module('ionicApp', ['ionic', 'Orbicular'])
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.transition("ios");
@@ -71,14 +55,38 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
 
 })
 
+.run(function ($rootScope, $interval) {
+
+    $rootScope.hasLoaded = false;
+
+    $rootScope.Nr_of_Absa = 0;
+    $rootScope.Nr_of_Nedbank = 0;
+    $rootScope.Nr_of_Capitec = 0;
+    $rootScope.Nr_of_FNB = 0;
+    $rootScope.Nr_of_Stdb = 0;
+    $rootScope.Nr_of_blabla = 0;
+
+    $rootScope.TotalServices = 0;
+
+    $rootScope.bankList = [{bankName:"ABSA", bankValue:$rootScope.Nr_of_Absa,},
+        {bankName:"Capitec", bankValue: $rootScope.Nr_of_Capitec,},
+        {bankName:"FNB", bankValue: $rootScope.Nr_of_FNB,},
+        {bankName:"Nedbank", bankValue: $rootScope.Nr_of_Nedbank,},
+        {bankName:"Standardbank", bankValue: $rootScope.Nr_of_Stdb,},
+        {bankName:"Bla Bla", bankValue: $rootScope.Nr_of_blabla}
+    ];
+
+    /*$rootScope.$watch('TotalServices', function ($interval) {
+        console.log('Run TotalServices : ' + $rootScope.TotalServices);
+    });*/
+
+   // $interval(function ($scope) { console.log('Run Timer TotalServices : ' + $rootScope.TotalServices); }, 1000);
+})
+
 .service("MapService", function ($http, $rootScope) {
     return ({
-        Start: Start
+        GetPos: GetPos
     });
-
-    function Start() {
-        GetPos();
-    }
 
     function GetPos() {
 
@@ -86,7 +94,7 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
             navigator.geolocation.getCurrentPosition(GotPosition, PosError);
         }
         else {
-            error = "Geolocation is not supported by this browser.";
+            console.log('Error : Geolocation is not supported by this browser.');
         };
     }
 
@@ -99,27 +107,41 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
             angular.forEach(data.results.items, function (object) {
                 switch (object.title) {
                     case "ABSA":
-                        Nr_of_Absa++;
+                        $rootScope.Nr_of_Absa++;
                         break;
                     case "First National Bank":
-                        Nr_of_FNB++;
+                        $rootScope.Nr_of_FNB++;
                         break;
                     case "Standard Bank":
-                        Nr_of_Stdb++;
+                        $rootScope.Nr_of_Stdb++;
                         break;
                     case "Nedbank":
-                        Nr_of_Nedbank++;
+                        $rootScope.Nr_of_Nedbank++;
                         break;
                     case "Capitec":
-                        Nr_of_Capitec++;
+                        $rootScope.Nr_of_Capitec++;
                         break;
                     case "blabla":
-                        Nr_of_blabla++;
+                        $rootScope.Nr_of_blabla++;
                         break;
                 }
             });
             console.log('Banks Loaded');
-            TotalServices = Nr_of_Absa + Nr_of_Nedbank + Nr_of_Capitec + Nr_of_FNB + Nr_of_Stdb + Nr_of_blabla;
+            $rootScope.TotalServices = $rootScope.Nr_of_Absa
+                + $rootScope.Nr_of_Nedbank
+                + $rootScope.Nr_of_Capitec
+                + $rootScope.Nr_of_FNB
+                + $rootScope.Nr_of_Stdb
+                + $rootScope.Nr_of_blabla;
+            $rootScope.hasLoaded = true;
+
+            $rootScope.bankList = [{ bankName: "ABSA", bankValue: $rootScope.Nr_of_Absa, },
+                { bankName: "Capitec", bankValue: $rootScope.Nr_of_Capitec, },
+                { bankName: "FNB", bankValue: $rootScope.Nr_of_FNB, },
+                { bankName: "Nedbank", bankValue: $rootScope.Nr_of_Nedbank, },
+                { bankName: "Standardbank", bankValue: $rootScope.Nr_of_Stdb, },
+                { bankName: "Bla Bla", bankValue: $rootScope.Nr_of_blabla }
+            ];
         })
         .error(function (data, status, headers, config) {
             console.log('Error : ' + status);
@@ -129,43 +151,24 @@ var app = angular.module('ionicApp', ['ionic', 'angular-svg-round-progress'])
     function PosError(error) {
         switch (error.code) {
             case error.PERMISSION_DENIED:
-                error = "User denied the request for Geolocation."
+                console.log('Error : "User denied the request for Geolocation.');
                 break;
             case error.POSITION_UNAVAILABLE:
-                error = "Location information is unavailable."
+                console.log('Error : "Location information is unavailable.');
                 break;
             case error.TIMEOUT:
-                error = "The request to get user location timed out."
+                console.log('Error : "The request to get user location timed out.');
                 break;
             case error.UNKNOWN_ERROR:
-                error = "An unknown error occurred."
+                console.log('Error : "An unknown error occurred.');
                 break;
         }
     }
-    
+
 })
 
-.controller('HomeTabCtrl',function ($scope, MapService) {
-    MapService.Start();
-    $scope.banks = banklist;
-    $scope.TotalServices = TotalServices;
-})
+.controller('HomeTabCtrl', function ($scope, MapService, $rootScope) {
 
-.directive('myCustomer', function () {
-    return {
-        template: function (elem, attr) {
-            return '<div round-progress ' +
-            ' max="' + TotalServices + '"' +
-            ' current="' + attr.total + '"' +
-            ' color="#fff"' +
-            ' bgcolor=rgba(0,0,0,0.5);' +
-            ' radius="25"' +
-            ' stroke="5"' +
-            ' semi="false"' +
-            ' rounded="false"' +
-            ' clockwise="true"' +
-            ' iterations="50"' +
-            ' animation="easeInOutQuart"></div>' ;
-        }
-    };
+    MapService.GetPos();
+
 });

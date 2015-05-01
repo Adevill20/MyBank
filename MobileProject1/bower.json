@@ -4,7 +4,8 @@
   "dependencies": {
     "kendo-ui-appbuilder-core": "*",
     "everlive": ">=1.2.14",
-    "ionic": "~0.9.27"
+    "ionic": "~0.9.27",
+    "orbicular": "~3.0.0"
   },
   "devDependencies": {}
 }

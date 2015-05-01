@@ -5,8 +5,7 @@
     "org.apache.cordova.geolocation",
     "org.apache.cordova.inappbrowser",
     "org.apache.cordova.network-information",
-    "org.apache.cordova.splashscreen",
-    "org.apache.cordova.statusbar"
+    "org.apache.cordova.splashscreen"
   ],
   "CordovaPluginVariables": {}
 }
