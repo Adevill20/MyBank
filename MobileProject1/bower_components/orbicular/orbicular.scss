@@ -1,16 +1,18 @@
 
 // Don't rely on Compass
 @mixin co-border-radius($radius) {
-    border-radius:$radius;
     -webkit-border-radius:$radius;
     -moz-border-radius:$radius;
+    border-radius:$radius;
 }
 
 @mixin co-transform($transform) {
     -webkit-transform: $transform;
     -moz-transform: $transform;
+    -o-transform: $transform;
     -ms-transform: $transform;
     transform: $transform;
+    
 }
 
 @mixin co-box-sizing($type) {
@@ -51,7 +53,8 @@
         height: 1em;
         @include co-box-sizing(border-box);
 
-        *, *:after, *:before {
+        //*, *:after, *:before {
+        *:after, *:before {
             @include co-box-sizing(border-box);
         }
 
@@ -72,7 +75,7 @@
 
             -webkit-transition: -webkit-transform $transTime $transFunc;
             -moz-transition: -moz-transform $transTime $transFunc;
-            -ms-transition: -ms-transform $transTime $transFunc;
+            //-ms-transition: -ms-transform $transTime $transFunc;
             -o-transition: -o-transform $transTime $transFunc;
             transition: -webkit-transform $transTime $transFunc;
             transition: transform $transTime $transFunc;
@@ -80,13 +83,20 @@
             // This may promote the layer to a composited layer.
             // Should reduce flickering..
             -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
             backface-visibility: hidden;
-            will-change: transform;
+            //will-change: transform, opacity;
+
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
         }
 
         &> div.co-circle {
             // Hides half of the circle
-            clip: rect(0px, 1em, 1em, 0.5em);
+            clip: rect(0, 1em, 1em, 0.5em);
 
             // This is the new CSS standard (replacing clip)
             // As of April 2015 it had the following issues:
@@ -98,7 +108,7 @@
 
 
             &> div.co-fill {
-                clip: rect(0em, 0.5em, 1em, 0em);
+                clip: rect(0, 0.5em, 1em, 0);
 
                 //-webkit-clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
                 //clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);

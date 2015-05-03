@@ -1,11 +1,3 @@
 {
-  "CorePlugins": [
-    "org.apache.cordova.device",
-    "org.apache.cordova.device-orientation",
-    "org.apache.cordova.geolocation",
-    "org.apache.cordova.inappbrowser",
-    "org.apache.cordova.network-information",
-    "org.apache.cordova.splashscreen"
-  ],
   "CordovaPluginVariables": {}
 }

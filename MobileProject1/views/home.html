@@ -1,0 +1,8 @@
+<div data-role="view" data-title="Home" data-layout="main" data-model="APP.models.home" data-bind="events: {init: onHomeInit }">
+    <h1 data-bind="html: title"></h1>
+    <lu id="bankListView" data-role="listview" data-style="inset" data-template="HomeTemplate" data-bind="source: ds"></lu>
+</div>
+
+<script type="text/x-kendo-template" id="HomeTemplate">
+    <a href="views/settings.html">#: data.bankName #</a>
+</script>

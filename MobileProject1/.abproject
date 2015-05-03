@@ -25,7 +25,7 @@
     "Portrait",
     "Landscape"
   ],
-  "AndroidHardwareAcceleration": "true",
+  "AndroidHardwareAcceleration": "false",
   "iOSStatusBarStyle": "Default",
   "Framework": "Cordova",
   "WP8TileTitle": "PinPoint MyBank",
@@ -40,12 +40,21 @@
   "WP8Requirements": [],
   "WP8PublisherID": "{9b129e57-e87c-4913-8060-f520be77d487}",
   "WP8ProductID": "{65294c71-6058-486c-8d4e-a8e981d34a57}",
-  "WPSdk": "8.1",
+  "WPSdk": "8.0",
   "WP8PackageIdentityName": "1234Telerik.AppBuilder1",
   "WP8WindowsPublisherName": "CN=Telerik",
   "WP8SupportedResolutions": [
     "ID_RESOLUTION_WVGA",
     "ID_RESOLUTION_WXGA",
     "ID_RESOLUTION_HD720P"
+  ],
+  "CorePlugins": [
+    "org.apache.cordova.console",
+    "org.apache.cordova.device",
+    "org.apache.cordova.device-orientation",
+    "org.apache.cordova.geolocation",
+    "org.apache.cordova.inappbrowser",
+    "org.apache.cordova.network-information",
+    "org.apache.cordova.splashscreen"
   ]
 }

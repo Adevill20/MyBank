@@ -1,4 +1,4 @@
-orbicular, [orbicular] {
+﻿orbicular, [orbicular] {
   display: block;
   position: relative;
   height: 1em;
@@ -6,10 +6,10 @@ orbicular, [orbicular] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #EEE;
-  border-radius: 0.5em;
   -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em; }
-  orbicular *, orbicular *:after, orbicular *:before, [orbicular] *, [orbicular] *:after, [orbicular] *:before {
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em; }
+  orbicular *:after, orbicular *:before, [orbicular] *:after, [orbicular] *:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
@@ -20,22 +20,26 @@ orbicular, [orbicular] {
     width: 1em;
     height: 1em;
     background: transparent;
-    border-radius: 0.5em;
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
     -webkit-transition: -webkit-transform 0.3s linear;
     -moz-transition: -moz-transform 0.3s linear;
-    -ms-transition: -ms-transform 0.3s linear;
     -o-transition: -o-transform 0.3s linear;
     transition: -webkit-transform 0.3s linear;
     transition: transform 0.3s linear;
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    will-change: transform; }
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
   orbicular > div.co-circle, [orbicular] > div.co-circle {
-    clip: rect(0px, 1em, 1em, 0.5em); }
+    clip: rect(0, 1em, 1em, 0.5em); }
     orbicular > div.co-circle > div.co-fill, [orbicular] > div.co-circle > div.co-fill {
-      clip: rect(0em, 0.5em, 1em, 0em);
+      clip: rect(0, 0.5em, 1em, 0);
       background-color: #50a6d3; }
   orbicular > div.co-shadow, [orbicular] > div.co-shadow {
     box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2) inset;
@@ -43,9 +47,9 @@ orbicular, [orbicular] {
     width: 1em;
     height: 1em;
     background: transparent;
-    border-radius: 0.5em;
     -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em; }
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em; }
   orbicular > div.co-content, [orbicular] > div.co-content {
     position: absolute;
     overflow: hidden;
@@ -55,9 +59,9 @@ orbicular, [orbicular] {
     margin-left: 0.08em;
     margin-top: 0.08em;
     background-color: #2b383f;
-    border-radius: 0.42em;
     -webkit-border-radius: 0.42em;
     -moz-border-radius: 0.42em;
+    border-radius: 0.42em;
     box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2); }
     orbicular > div.co-content > div, [orbicular] > div.co-content > div {
       display: table;
@@ -77,15 +81,5 @@ orbicular, [orbicular] {
           vertical-align: middle;
           width: 100%; }
 
-div.container {
-  width: 10em;
-  height: 10em; }
-
-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; }
 
 /*# sourceMappingURL=main.css.map */

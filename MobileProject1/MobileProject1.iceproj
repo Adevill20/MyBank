@@ -56,25 +56,6 @@
     <Content Include="bower_components\angular-ui-router\LICENSE" />
     <Content Include="bower_components\angular-ui-router\package.json" />
     <Content Include="bower_components\angular-ui-router\README.md" />
-    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.js" />
-    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.min.js" />
-    <Content Include="bower_components\angular-ui-router\release\doc\%24resolve.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\%24templateFactory.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\%24urlMatcherFactory.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\common.js.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\global.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\index.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\resolve.js.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\scripts\linenumber.js" />
-    <Content Include="bower_components\angular-ui-router\release\doc\scripts\prettify\Apache-License-2.0.txt" />
-    <Content Include="bower_components\angular-ui-router\release\doc\scripts\prettify\lang-css.js" />
-    <Content Include="bower_components\angular-ui-router\release\doc\scripts\prettify\prettify.js" />
-    <Content Include="bower_components\angular-ui-router\release\doc\styles\jsdoc-default.css" />
-    <Content Include="bower_components\angular-ui-router\release\doc\styles\prettify-jsdoc.css" />
-    <Content Include="bower_components\angular-ui-router\release\doc\styles\prettify-tomorrow.css" />
-    <Content Include="bower_components\angular-ui-router\release\doc\templateFactory.js.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\UrlMatcher.html" />
-    <Content Include="bower_components\angular-ui-router\release\doc\urlMatcherFactory.js.html" />
     <Content Include="bower_components\angular-ui-router\sample\bootstrap.min.css" />
     <Content Include="bower_components\angular-ui-router\sample\contacts.detail.html" />
     <Content Include="bower_components\angular-ui-router\sample\contacts.detail.item.edit.html" />
@@ -237,6 +218,12 @@
     <Content Include="bower_components\kendo-ui-appbuilder-core\styles\kendo.mobile.all.min.css" />
     <Content Include="bower_components\kendo-ui-appbuilder-core\typescript\jquery.d.ts" />
     <Content Include="bower_components\kendo-ui-appbuilder-core\typescript\kendo.mobile.d.ts" />
+    <Content Include="bower_components\orbicular\orbicular.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\orbicular\orbicular.css.map">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="cordova.android.js" />
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
@@ -246,11 +233,25 @@
     <Content Include="map\map.html" />
     <Content Include="bower_components\orbicular\orbicular.js" />
     <Content Include="bower_components\orbicular\orbicular.scss" />
+    <Content Include="Plugins\jshybugger-plugin-4.5.8\LICENSE" />
+    <Content Include="Plugins\jshybugger-plugin-4.5.8\plugin.xml" />
+    <Content Include="Plugins\jshybugger-plugin-4.5.8\README.md" />
+    <Content Include="Plugins\jshybugger-plugin-4.5.8\src\android\libs\jshybugger-library.jar" />
+    <Content Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\cordova\JsHybuggerPlugin.java" />
+    <Content Include="Plugins\jshybugger-plugin-4.5.8\www\jsHybuggerLoader.js" />
     <Content Include="styles\main.css" />
+    <Content Include="styles\main.css.map">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="styles\main.min.css">
       <SubType>Content</SubType>
     </Content>
     <Content Include="styles\main.scss" />
+    <Content Include="views\contacts.html" />
+    <Content Include="views\home.html" />
+    <Content Include="views\services.html">
+      <SubType>Content</SubType>
+    </Content>
     <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
@@ -312,11 +313,6 @@
     <Folder Include="bower_components\angular-ui-router\" />
     <Folder Include="bower_components\angular-ui-router\config\" />
     <Folder Include="bower_components\angular-ui-router\lib\" />
-    <Folder Include="bower_components\angular-ui-router\release\" />
-    <Folder Include="bower_components\angular-ui-router\release\doc\" />
-    <Folder Include="bower_components\angular-ui-router\release\doc\scripts\" />
-    <Folder Include="bower_components\angular-ui-router\release\doc\scripts\prettify\" />
-    <Folder Include="bower_components\angular-ui-router\release\doc\styles\" />
     <Folder Include="bower_components\angular-ui-router\sample\" />
     <Folder Include="bower_components\angular-ui-router\src\" />
     <Folder Include="bower_components\angular-ui-router\test\" />
@@ -348,7 +344,16 @@
     <Folder Include="bower_components\kendo-ui-appbuilder-core\typescript\" />
     <Folder Include="bower_components\orbicular\" />
     <Folder Include="map\" />
+    <Folder Include="views\" />
     <Folder Include="Plugins\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\libs\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\cordova\" />
+    <Folder Include="Plugins\jshybugger-plugin-4.5.8\www\" />
     <Folder Include="styles\" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />

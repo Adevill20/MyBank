@@ -1,94 +1,105 @@
-document.addEventListener('deviceready', function onDeviceReady() {
-    if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
-    angular.bootstrap(document, ['ionicApp']);
-}, false);
+(function () {
 
-var app = angular.module('ionicApp', ['ionic', 'Orbicular'])
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-    $ionicConfigProvider.views.maxCache(0);
-    $ionicConfigProvider.views.transition("ios");
-    $ionicConfigProvider.backButton.icon("ion-chevron-left");
-    $ionicConfigProvider.navBar.alignTitle("center");
-    $ionicConfigProvider.navBar.positionPrimaryButtons("left");
+    // store a reference to the application object that will be created
+    // later on so that we can use it if need be
+    var app;
 
-    $stateProvider
-      .state('main', {
-          url: "/main",
-          abstract: true,
-          templateUrl: "templates/main.html"
-      })
-      .state('main.home', {
-          url: "/home",
-          views: {
-              'home-tab': {
-                  templateUrl: "templates/home.html",
-                  controller: 'HomeTabCtrl'
-              }
-          }
-      })
-      .state('main.facts', {
-          url: "/facts",
-          views: {
-              'home-tab': {
-                  templateUrl: "templates/facts.html"
-              }
-          }
-      })
-      .state('main.facts2', {
-          url: "/facts2",
-          views: {
-              'home-tab': {
-                  templateUrl: "templates/facts2.html"
-              }
-          }
-      })
-    .state('main.map_view', {
-        url: "/map_view",
-        views: {
-            'home-tab': {
-                templateUrl: "templates/map_view.html"
-            }
-        }
-    });
+    var longitude;
+    var latitude;
 
-    $urlRouterProvider.otherwise("/main/home");
+    var Nr_of_Absa = 0;
+    var Nr_of_FNB = 0;
+    var Nr_of_Stdb = 0;
+    var Nr_of_Nedbank = 0;
+    var Nr_of_Capitec = 0;
+    var Nr_of_blabla = 0;
 
-})
+    var TotalServices = 0;
+    var hasLoaded = false;
 
-.run(function ($rootScope, $interval) {
-
-    $rootScope.hasLoaded = false;
-
-    $rootScope.Nr_of_Absa = 0;
-    $rootScope.Nr_of_Nedbank = 0;
-    $rootScope.Nr_of_Capitec = 0;
-    $rootScope.Nr_of_FNB = 0;
-    $rootScope.Nr_of_Stdb = 0;
-    $rootScope.Nr_of_blabla = 0;
-
-    $rootScope.TotalServices = 0;
-
-    $rootScope.bankList = [{bankName:"ABSA", bankValue:$rootScope.Nr_of_Absa,},
-        {bankName:"Capitec", bankValue: $rootScope.Nr_of_Capitec,},
-        {bankName:"FNB", bankValue: $rootScope.Nr_of_FNB,},
-        {bankName:"Nedbank", bankValue: $rootScope.Nr_of_Nedbank,},
-        {bankName:"Standardbank", bankValue: $rootScope.Nr_of_Stdb,},
-        {bankName:"Bla Bla", bankValue: $rootScope.Nr_of_blabla}
+    var bankList = [{ bankName: "ABSA", bankValue: Nr_of_Absa, },
+                        { bankName: "Capitec", bankValue: Nr_of_Capitec, },
+                        { bankName: "FNB", bankValue: Nr_of_FNB, },
+                        { bankName: "Nedbank", bankValue: Nr_of_Nedbank, },
+                        { bankName: "Standardbank", bankValue: Nr_of_Stdb, },
+                        { bankName: "Bla Bla", bankValue: Nr_of_blabla }
     ];
 
-    /*$rootScope.$watch('TotalServices', function ($interval) {
-        console.log('Run TotalServices : ' + $rootScope.TotalServices);
-    });*/
-
-   // $interval(function ($scope) { console.log('Run Timer TotalServices : ' + $rootScope.TotalServices); }, 1000);
-})
-
-.service("MapService", function ($http, $rootScope) {
-    return ({
-        GetPos: GetPos
+    var MyBankDataSource = new kendo.data.DataSource({ 
+        autoSync: true,
+        batch: true,
+        data: bankList 
     });
 
-    function GetPos() {
+    // create an object to store the models for each view
+    window.APP = {
+        models: {
+            home: {
+                title: 'Home',
+                ds: MyBankDataSource,
+                alert: function (e) {
+                    alert(e.data.bankValue);
+                },
+                onHomeInit: function (e) {
+                    app.showLoading();
+                    setTimeout(function (e) {
+                        app.hideLoading();
+                    }, 5000);
+                }
+            },
+            services: {
+                title: 'Services',
+                ds: MyBankDataSource,
+                alert: function (e) {
+                    alert(e.data.bankValue);
+                },
+                onInit: function (e) {
+                    app.showLoading();
+                    setTimeout(function (e) {
+                        app.hideLoading();
+                    }, 5000);
+                }
+            },
+            contacts: {
+                title: 'Contacts',
+                ds: new kendo.data.DataSource({
+                    data: [{ id: 1, name: 'Bob' }, { id: 2, name: 'Mary' }, { id: 3, name: 'John' }]
+                }),
+                alert: function (e) {
+                    alert(e.data.name);
+                }
+            }
+        }
+    };
+
+    // this function is called by Cordova when the application is loaded by the device
+    document.addEventListener('deviceready', function () {
+
+        // hide the splash screen as soon as the app is ready. otherwise
+        // Cordova will wait 5 very long seconds to do it for you.
+        navigator.splashscreen.hide();
+
+        app = new kendo.mobile.Application(document.body, {
+
+            // you can change the default transition (slide, zoom or fade)
+            transition: 'slide',
+
+            // comment out the following line to get a UI which matches the look
+            // and feel of the operating system
+            skin: 'flat',
+
+            // the application needs to know which view to load first
+            initial: 'views/home.html',
+
+            loading: "<h1>Please wait...</h1>"
+
+        });
+
+        DeviceReady();
+
+    }, false);
+
+    function DeviceReady() {
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(GotPosition, PosError);
@@ -96,57 +107,91 @@ var app = angular.module('ionicApp', ['ionic', 'Orbicular'])
         else {
             console.log('Error : Geolocation is not supported by this browser.');
         };
-    }
+    };
 
     function GotPosition(position) {
         longitude = position.coords.longitude;
         latitude = position.coords.latitude;
 
-        var request = $http.get('https://places.demo.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg')
-        .success(function (data, status, headers, config) {
-            angular.forEach(data.results.items, function (object) {
-                switch (object.title) {
-                    case "ABSA":
-                        $rootScope.Nr_of_Absa++;
-                        break;
-                    case "First National Bank":
-                        $rootScope.Nr_of_FNB++;
-                        break;
-                    case "Standard Bank":
-                        $rootScope.Nr_of_Stdb++;
-                        break;
-                    case "Nedbank":
-                        $rootScope.Nr_of_Nedbank++;
-                        break;
-                    case "Capitec":
-                        $rootScope.Nr_of_Capitec++;
-                        break;
-                    case "blabla":
-                        $rootScope.Nr_of_blabla++;
-                        break;
-                }
-            });
-            console.log('Banks Loaded');
-            $rootScope.TotalServices = $rootScope.Nr_of_Absa
-                + $rootScope.Nr_of_Nedbank
-                + $rootScope.Nr_of_Capitec
-                + $rootScope.Nr_of_FNB
-                + $rootScope.Nr_of_Stdb
-                + $rootScope.Nr_of_blabla;
-            $rootScope.hasLoaded = true;
+        console.log("Got Longitude : " + longitude + "\n");
+        console.log("Got Latitude : " + latitude);
 
-            $rootScope.bankList = [{ bankName: "ABSA", bankValue: $rootScope.Nr_of_Absa, },
-                { bankName: "Capitec", bankValue: $rootScope.Nr_of_Capitec, },
-                { bankName: "FNB", bankValue: $rootScope.Nr_of_FNB, },
-                { bankName: "Nedbank", bankValue: $rootScope.Nr_of_Nedbank, },
-                { bankName: "Standardbank", bankValue: $rootScope.Nr_of_Stdb, },
-                { bankName: "Bla Bla", bankValue: $rootScope.Nr_of_blabla }
-            ];
-        })
-        .error(function (data, status, headers, config) {
-            console.log('Error : ' + status);
-        });
-    }
+        if (!hasLoaded) {
+
+            var request = $.getJSON(
+                'https://places.demo.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg',
+                function (data) {
+                    console.log("success");
+                    $.each(data.results.items, function (object) {
+                        switch (this.title) {
+                            case "ABSA":
+                                Nr_of_Absa++;
+                                break;
+                            case "First National Bank":
+                                Nr_of_FNB++;
+                                break;
+                            case "Standard Bank":
+                                Nr_of_Stdb++;
+                                break;
+                            case "Nedbank":
+                                Nr_of_Nedbank++;
+                                break;
+                            case "Capitec":
+                                Nr_of_Capitec++;
+                                break;
+                            case "blabla":
+                                Nr_of_blabla++;
+                                break;
+                        }
+                    });
+
+
+                    TotalServices = Nr_of_Absa
+                    + Nr_of_Nedbank
+                    + Nr_of_Capitec
+                    + Nr_of_FNB
+                    + Nr_of_Stdb
+                    + Nr_of_blabla;
+
+                    bankList = [{ bankName: "ABSA", bankValue: Nr_of_Absa, },
+                        { bankName: "Capitec", bankValue: Nr_of_Capitec, },
+                        { bankName: "FNB", bankValue: Nr_of_FNB, },
+                        { bankName: "Nedbank", bankValue: Nr_of_Nedbank, },
+                        { bankName: "Standardbank", bankValue: Nr_of_Stdb, },
+                        { bankName: "Bla Bla", bankValue: Nr_of_blabla }
+                    ];
+
+                    MyBankDataSource.fetch(function () {
+                        MyBankDataSource.data(bankList);
+                    });
+                    MyBankDataSource.sync(); 
+                    //APP.models.settings.ds.read();
+
+                    /*$("#bankListView").kendoMobileListView({
+                        dataSource: ({ data: bankList }),
+                        template: kendo.template($("#settingsTemplate").html()),
+                        alert: function (e) {
+                            alert(e.data.bankValue);
+                        }
+                });*/
+
+                    //var listView = $("#bankListView").data("kendoMobileListView");
+                    // refreshes the list view
+                    //listView.refresh();
+                    //listView.setDataSource(MyBankDataSource);
+                })
+                //.done(function () {
+                //console.log("second success");
+                //})
+                .fail(function () {
+                    console.log("error");
+                });
+                //.always(function () {
+                //console.log("complete");
+           // });
+            hasLoaded = true;
+        }
+    };
 
     function PosError(error) {
         switch (error.code) {
@@ -163,12 +208,6 @@ var app = angular.module('ionicApp', ['ionic', 'Orbicular'])
                 console.log('Error : "An unknown error occurred.');
                 break;
         }
-    }
+    };
 
-})
-
-.controller('HomeTabCtrl', function ($scope, MapService, $rootScope) {
-
-    MapService.GetPos();
-
-});
+}());
