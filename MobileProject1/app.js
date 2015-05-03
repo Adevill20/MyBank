@@ -68,6 +68,9 @@
                 alert: function (e) {
                     alert(e.data.name);
                 }
+            },
+            map: {
+                title: 'Map',
             }
         }
     };
