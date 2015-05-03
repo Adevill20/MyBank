@@ -29,6 +29,10 @@
     <Content Include=".release.abproject" />
     <Content Include=".yo-rc.json" />
     <Content Include="app.js" />
+    <Content Include="App_Resources\Android\AndroidManifest.xml" />
+    <Content Include="App_Resources\Android\xml\config.xml" />
+    <Content Include="App_Resources\iOS\config.xml" />
+    <Content Include="App_Resources\iOS\Info.plist" />
     <Content Include="App_Resources\WP8\config.xml" />
     <Content Include="App_Resources\WP8\WMAppManifest.xml" />
     <Content Include="bower.json" />
@@ -138,6 +142,7 @@
     <Content Include="cordova.wp8.js" />
     <Content Include="green_background.jpg" />
     <Content Include="index.html" />
+    <Content Include="views\mapsjs-core.js" />
     <Content Include="views\map.html" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\LICENSE" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\plugin.xml" />
@@ -156,6 +161,10 @@
     <Content Include="views\contacts.html" />
     <Content Include="views\home.html" />
     <Content Include="views\mapContainer.html" />
+    <Content Include="views\mapsjs-mapevents.js" />
+    <Content Include="views\mapsjs-service.js" />
+    <Content Include="views\mapsjs-ui.css" />
+    <Content Include="views\mapsjs-ui.js" />
     <Content Include="views\services.html">
       <SubType>Content</SubType>
     </Content>
@@ -209,6 +218,7 @@
     <Folder Include="App_Resources\Android\drawable-ldpi\" />
     <Folder Include="App_Resources\Android\drawable-mdpi\" />
     <Folder Include="App_Resources\Android\drawable-nodpi\" />
+    <Folder Include="App_Resources\Android\xml\" />
     <Folder Include="App_Resources\iOS\" />
     <Folder Include="App_Resources\WP8\" />
     <Folder Include="App_Resources\WP8\Assets\" />

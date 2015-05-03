@@ -1,4 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget>
+    <access uri="*" subdomains="true" />
+    <access origin="http://*.here.com*"/>
+    <access origin="https://*.here.com*"/>
     <access origin="*" />
 </widget>
