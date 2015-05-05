@@ -1,5 +1,17 @@
 <div data-role="view" data-title="Map" data-layout="main" data-model="APP.models.map">
-    <script>console.log("MapContainer loaded");</script>
-    <iframe name='map_frame' src='views/map.html' width="300" height="320" scrolling="no" frameborder="0"></iframe>
-</div>
 
+    <style>
+        html, iframe {
+            height: 400px;
+            width: 98%;
+        }
+    </style>
+
+    <iframe id="mapIframe" src="views/map.html" scrolling="no" frameborder="0" data-bind="source: ds"></iframe>
+
+    <div id="containerDiv" class="containerDiv"></div>
+
+    <script>
+        console.log("MapContainer loaded");
+    </script>
+</div>

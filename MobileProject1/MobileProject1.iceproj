@@ -142,7 +142,17 @@
     <Content Include="cordova.wp8.js" />
     <Content Include="green_background.jpg" />
     <Content Include="index.html" />
-    <Content Include="views\mapsjs-core.js" />
+    <Content Include="kendo\js\jquery.min.js" />
+    <Content Include="kendo\js\kendo.mobile.min.js" />
+    <Content Include="kendo\styles\images\back.png" />
+    <Content Include="kendo\styles\images\kendoui.svg" />
+    <Content Include="kendo\styles\images\kendoui.ttf" />
+    <Content Include="kendo\styles\images\kendoui.woff" />
+    <Content Include="kendo\styles\images\wp8_icons.png" />
+    <Content Include="kendo\styles\images\wp8_inverseicons.png" />
+    <Content Include="kendo\styles\kendo.mobile.all.min.css" />
+    <Content Include="kendo\typescript\jquery.d.ts" />
+    <Content Include="kendo\typescript\kendo.mobile.d.ts" />
     <Content Include="views\map.html" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\LICENSE" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\plugin.xml" />
@@ -161,10 +171,6 @@
     <Content Include="views\contacts.html" />
     <Content Include="views\home.html" />
     <Content Include="views\mapContainer.html" />
-    <Content Include="views\mapsjs-mapevents.js" />
-    <Content Include="views\mapsjs-service.js" />
-    <Content Include="views\mapsjs-ui.css" />
-    <Content Include="views\mapsjs-ui.js" />
     <Content Include="views\services.html">
       <SubType>Content</SubType>
     </Content>
@@ -244,6 +250,11 @@
     <Folder Include="bower_components\kendo-ui-appbuilder-core\styles\" />
     <Folder Include="bower_components\kendo-ui-appbuilder-core\styles\images\" />
     <Folder Include="bower_components\kendo-ui-appbuilder-core\typescript\" />
+    <Folder Include="kendo\" />
+    <Folder Include="kendo\js\" />
+    <Folder Include="kendo\styles\" />
+    <Folder Include="kendo\styles\images\" />
+    <Folder Include="kendo\typescript\" />
     <Folder Include="views\" />
     <Folder Include="Plugins\" />
     <Folder Include="Plugins\jshybugger-plugin-4.5.8\" />

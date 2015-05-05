@@ -4,8 +4,9 @@
     // later on so that we can use it if need be
     var app;
 
-    var longitude;
-    var latitude;
+    var longitude = 0;
+    var latitude = 0;
+    var selectedbank = "";
 
     var Nr_of_Absa = 0;
     var Nr_of_FNB = 0;
@@ -31,6 +32,18 @@
         data: bankList 
     });
 
+    var mySelectedBank = [{
+        bank: selectedbank, lat: latitude, long: longitude
+    }];
+
+    var SelectedBank = new kendo.data.DataSource({
+        autoSync: true,
+        batch: true,
+        data: mySelectedBank
+    });
+
+    SelectedBank.read();
+
     // create an object to store the models for each view
     window.APP = {
         models: {
@@ -45,6 +58,9 @@
                     setTimeout(function (e) {
                         app.hideLoading();
                     }, 5000);
+                },
+                listener: function (e) {
+                    APP.models.map.ds._data[0].bank = e.data.bankName;
                 }
             },
             services: {
@@ -70,7 +86,8 @@
                 }
             },
             map: {
-                title: 'Map'
+                title: 'Map',
+                ds: SelectedBank
             },
         }
     };
@@ -116,13 +133,22 @@
         longitude = position.coords.longitude;
         latitude = position.coords.latitude;
 
+        var mySelectedBank = [{
+            bank: selectedbank, lat: latitude, long: longitude
+        }];
+
+        SelectedBank.fetch(function () {
+            SelectedBank.data(mySelectedBank);
+        });
+        SelectedBank.sync();
+
         console.log("Got Longitude : " + longitude + "\n");
         console.log("Got Latitude : " + latitude);
 
         if (!hasLoaded) {
 
             var request = $.getJSON(
-                'https://places.demo.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=mLJYk4GmHooykP8vSwER&app_code=XJ6-QI0pqxm9I-R0-EB5yw',
+                'http://places.cit.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=mLJYk4GmHooykP8vSwER&app_code=XJ6-QI0pqxm9I-R0-EB5yw',
                 function (data) {
                     console.log("success");
                     $.each(data.results.items, function (object) {
@@ -167,7 +193,8 @@
                     MyBankDataSource.fetch(function () {
                         MyBankDataSource.data(bankList);
                     });
-                    MyBankDataSource.sync(); 
+                    MyBankDataSource.sync();
+
                     //APP.models.settings.ds.read();
 
                     /*$("#bankListView").kendoMobileListView({

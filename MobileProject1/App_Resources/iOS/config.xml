@@ -45,7 +45,6 @@
     </plugins>
 
     <access uri="*" subdomains="true" />
-    <access origin="http://*.here.com*"/>
-    <access origin="https://*.here.com*"/>
+    <access origin="*.here.*"/>
     <access origin="*" />
 </widget>
