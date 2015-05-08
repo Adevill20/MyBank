@@ -5,22 +5,24 @@
     <meta charset="utf-8">
 
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+    <link href="styles/kendo.mobile.flat.material-indigo.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     
     <!-- cordova script (this will be a 404 during development if served with `grunt serve`) -->
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js" type="text/javascript"></script>
+    <script src="jquery.knob.min.js" type="text/javascript"></script>
     <script src="kendo/js/kendo.mobile.min.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
     <!--<script src="http://10.123.89.1:8080/target/target-script-min.js#anonymous"></script> -->
 
 </head>
-<body>
-    <div data-role="layout" data-id="main" style="background-image: url('green_background.jpg');">
-        <div data-role="header">
+<body style="background-image: url('green_background.jpg');">
+    <div data-role="layout" data-id="main" style="background-color: transparent;">
+        <div data-role="header" style="background-color: transparent;">
             <div data-role="navbar">
-                <a id="back-button" class="nav-button" data-align="left" href="#/" data-role="backbutton">Back</a>
-                <a id="settings-button" class="nav-button" data-align="right" href="#/" data-role="settingsbutton">Back</a>
+                <a id="back-button" class="nav-button" data-align="left" data-role="backbutton" data-click="destroy">Back</a>
+                <a id="settings-button" class="nav-button" data-align="right" data-role="settingsbutton">Settings</a>
                 <span data-role="view-title"></span>
             </div>
         </div>
@@ -28,12 +30,11 @@
         <!-- application views will be rendered here -->
 
         <div data-role="footer">
-            <div data-role="tabstrip">
+            <!-- <div data-role="tabstrip">
                 <a href="views/home.html" data-icon="home">Home</a>
                 <a href="views/services.html" data-icon="settings">Services</a>
-                <a href="views/contacts.html" data-icon="contacts">Contacts</a>
                 <a href="views/mapContainer.html" data-icon="globe">Map</a>
-            </div>
+            </div>-->
         </div>
     </div>
 </body>

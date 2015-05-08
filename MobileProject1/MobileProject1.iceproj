@@ -142,6 +142,7 @@
     <Content Include="cordova.wp8.js" />
     <Content Include="green_background.jpg" />
     <Content Include="index.html" />
+    <Content Include="jquery.knob.min.js" />
     <Content Include="kendo\js\jquery.min.js" />
     <Content Include="kendo\js\kendo.mobile.min.js" />
     <Content Include="kendo\styles\images\back.png" />
@@ -153,6 +154,7 @@
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
     <Content Include="kendo\typescript\jquery.d.ts" />
     <Content Include="kendo\typescript\kendo.mobile.d.ts" />
+    <Content Include="styles\kendo.mobile.flat.material-indigo.css" />
     <Content Include="views\map.html" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\LICENSE" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\plugin.xml" />
@@ -161,14 +163,6 @@
     <Content Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\cordova\JsHybuggerPlugin.java" />
     <Content Include="Plugins\jshybugger-plugin-4.5.8\www\jsHybuggerLoader.js" />
     <Content Include="styles\main.css" />
-    <Content Include="styles\main.css.map">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="styles\main.min.css">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="styles\main.scss" />
-    <Content Include="views\contacts.html" />
     <Content Include="views\home.html" />
     <Content Include="views\mapContainer.html" />
     <Content Include="views\services.html">

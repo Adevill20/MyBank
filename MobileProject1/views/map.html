@@ -49,7 +49,7 @@
         	var map = new H.Map(
             	document.getElementById('mapContainer'),
             	defaultLayers.normal.map, {
-                	zoom: 13,
+                	zoom: 15,
                 	center: {
                 	    lng: myLong,
                         lat: myLat
@@ -73,18 +73,25 @@
 			else
 			    console.log('loading ui succeeded');
 
-			placesNearby(platform);
+			//placesNearby(platform);
 
-			function placesNearby(platform) {
+			/*function placesNearby(platform) {
 			    var here = new H.places.Search(platform.getPlacesService());
 			    var params = {
 			        'at': myLat + ',' + myLong,
-                    'q':'bank'
+			        //'q':'bank'
+			        'q': tempbank
 			    };
 			    here.request(params, {}, onResult, onError);
-			}
+			}*/
 
-			function onResult(result) {
+			var places = parent.APP.models.services.ds.data();
+			var filtered_places = $.grep(places, function (v) {
+			    return v.title === tempbank;
+			});
+			addPlacesToMap(filtered_places);
+
+			/*function onResult(result) {
 			    var places = result.results.items;
 
 			    addPlacesToMap(places);
@@ -92,7 +99,7 @@
 
 			function onError(error) {
 			    console.log('Error : ' + error);
-			}
+			}*/
 
 			function addPlacesToMap(places) {
 			    var group = new H.map.Group();
@@ -104,10 +111,10 @@
 			    }, false);
 
 			    group.addObjects(places.map(function (place) {
-			        var marker = new H.map.Marker({ lat: place.position[0], lng: place.position[1] })
-			        marker.content = '<div style="font-size: 10px" ><h3>' + place.title +
-                      '</h3><h4>' + place.category.title + '</h4>' + place.vicinity + '</div>';
-			        return marker;
+			            var marker = new H.map.Marker({ lat: place.position[0], lng: place.position[1] })
+			            marker.content = '<div style="font-size: 10px" ><h3>' + place.title +
+                          '</h3><h4>' + place.category.title + '</h4>' + place.vicinity + '</div>';
+			            return marker;
 			    }));
 
 			    map.addObject(group);

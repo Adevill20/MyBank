@@ -1,8 +1,25 @@
-<div data-role="view" data-title="Home" data-layout="main" data-model="APP.models.home" data-bind="events: {init: onHomeInit }">
-    <h1 data-bind="html: title"></h1>
-    <lu id="bankListView" data-role="listview" data-style="inset" data-template="HomeTemplate" data-bind="source: ds"></lu>
+<div data-role="view" data-title="Home" data-layout="main" data-model="APP.models.home" data-bind="events: {init: onHomeInit }" style="background-color: transparent;">
+    <lu id="bankListView" data-role="listview" data-style="inset" data-bind="source: ds" data-template="HomeTemplate"></lu>    
 </div>
 
 <script type="text/x-kendo-template" id="HomeTemplate">
-    <a href="views/services.html" data-bind="events:{ click: listener}">#: data.bankName #</a>
+    <a href="views/services.html" data-bind="events:{ click: listener}">
+        #: data.bankName #
+        <input type="text"
+               class="dial"
+               value="#: data.bankValue #"
+               data-min="0"
+               data-max="50"
+               data-linecap="round"
+               data-readonly="true"
+               data-width="75"
+               data-bgcolor="transparent"
+               data-skin="tron"
+               data-thickness=".1">
+    </a>
+
+    # $(function () { #
+    # $(".dial").knob(); #
+    # }); #
+
 </script>

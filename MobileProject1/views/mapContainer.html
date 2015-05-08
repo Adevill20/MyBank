@@ -1,15 +1,13 @@
-<div data-role="view" data-title="Map" data-layout="main" data-model="APP.models.map">
+<div data-role="view" data-title="Map" data-layout="main" data-model="APP.models.map" style="background-color: transparent;">
 
     <style>
         html, iframe {
             height: 400px;
-            width: 98%;
+            width: 100%;
         }
     </style>
 
     <iframe id="mapIframe" src="views/map.html" scrolling="no" frameborder="0" data-bind="source: ds"></iframe>
-
-    <div id="containerDiv" class="containerDiv"></div>
 
     <script>
         console.log("MapContainer loaded");

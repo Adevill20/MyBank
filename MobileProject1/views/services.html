@@ -1,9 +1,12 @@
-<div data-role="view" data-title="Services" data-layout="main" data-model="APP.models.services" style="background-color: transparent;">
-    <h1 data-bind="html: title"></h1>
-    <lu id="bankListView" data-role="listview" data-style="inset" data-template="settingsTemplate" data-bind="source: ds"></lu>
+<div data-role="view" data-title="Services" data-layout="main" data-model="APP.models.services" data-bind="events: {init: onServicesInit }" style="background-color: transparent;">
+    <lu id="servicesListView" data-role="listview" data-style="inset" data-template="settingsTemplate" data-bind="source: ds"></lu>
 </div>
 
 <script type="text/x-kendo-template" id="settingsTemplate">
-    <a data-bind="click: alert">#: data.bankName #</a>
+    <a href="views/mapContainer.html">
+        <p>#: data.title #
+        #= data.vicinity #</p>
+        <p>#: data.distance #m</p>
+    </a>
 </script>
 

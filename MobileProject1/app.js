@@ -13,17 +13,15 @@
     var Nr_of_Stdb = 0;
     var Nr_of_Nedbank = 0;
     var Nr_of_Capitec = 0;
-    var Nr_of_blabla = 0;
 
     var TotalServices = 0;
     var hasLoaded = false;
 
     var bankList = [{ bankName: "ABSA", bankValue: Nr_of_Absa, },
                         { bankName: "Capitec", bankValue: Nr_of_Capitec, },
-                        { bankName: "FNB", bankValue: Nr_of_FNB, },
+                        { bankName: "First National Bank", bankValue: Nr_of_FNB, },
                         { bankName: "Nedbank", bankValue: Nr_of_Nedbank, },
-                        { bankName: "Standardbank", bankValue: Nr_of_Stdb, },
-                        { bankName: "Bla Bla", bankValue: Nr_of_blabla }
+                        { bankName: "Standard bank", bankValue: Nr_of_Stdb, }
     ];
 
     var MyBankDataSource = new kendo.data.DataSource({ 
@@ -44,6 +42,14 @@
 
     SelectedBank.read();
 
+    var services;
+
+    var MyServicesDataSource = new kendo.data.DataSource({
+        autoSync: true,
+        batch: true,
+        data: services
+    });
+
     // create an object to store the models for each view
     window.APP = {
         models: {
@@ -61,28 +67,19 @@
                 },
                 listener: function (e) {
                     APP.models.map.ds._data[0].bank = e.data.bankName;
-                }
+                },
+                tempval: 32
             },
             services: {
                 title: 'Services',
-                ds: MyBankDataSource,
-                alert: function (e) {
-                    alert(e.data.bankValue);
-                },
-                onInit: function (e) {
+                ds: MyServicesDataSource,
+                onServicesInit: function (e) {
+                    MyServicesDataSource.filter({ field: "title", operator: "eq", value: APP.models.map.ds._data[0].bank });
+                    MyServicesDataSource.sync();
                     app.showLoading();
                     setTimeout(function (e) {
                         app.hideLoading();
                     }, 5000);
-                }
-            },
-            contacts: {
-                title: 'Contacts',
-                ds: new kendo.data.DataSource({
-                    data: [{ id: 1, name: 'Bob' }, { id: 2, name: 'Mary' }, { id: 3, name: 'John' }]
-                }),
-                alert: function (e) {
-                    alert(e.data.name);
                 }
             },
             map: {
@@ -142,15 +139,15 @@
         });
         SelectedBank.sync();
 
-        console.log("Got Longitude : " + longitude + "\n");
+        console.log("Got Longitude : " + longitude);
         console.log("Got Latitude : " + latitude);
 
         if (!hasLoaded) {
 
             var request = $.getJSON(
-                'http://places.cit.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&app_id=mLJYk4GmHooykP8vSwER&app_code=XJ6-QI0pqxm9I-R0-EB5yw',
+                'http://places.cit.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&size=500&app_id=mLJYk4GmHooykP8vSwER&app_code=XJ6-QI0pqxm9I-R0-EB5yw',
                 function (data) {
-                    console.log("success");
+                    console.log("Total Banks found: " + data.results.items.length);
                     $.each(data.results.items, function (object) {
                         switch (this.title) {
                             case "ABSA":
@@ -168,26 +165,20 @@
                             case "Capitec":
                                 Nr_of_Capitec++;
                                 break;
-                            case "blabla":
-                                Nr_of_blabla++;
-                                break;
                         }
                     });
-
 
                     TotalServices = Nr_of_Absa
                     + Nr_of_Nedbank
                     + Nr_of_Capitec
                     + Nr_of_FNB
                     + Nr_of_Stdb
-                    + Nr_of_blabla;
 
                     bankList = [{ bankName: "ABSA", bankValue: Nr_of_Absa, },
                         { bankName: "Capitec", bankValue: Nr_of_Capitec, },
-                        { bankName: "FNB", bankValue: Nr_of_FNB, },
+                        { bankName: "First National Bank", bankValue: Nr_of_FNB, },
                         { bankName: "Nedbank", bankValue: Nr_of_Nedbank, },
-                        { bankName: "Standardbank", bankValue: Nr_of_Stdb, },
-                        { bankName: "Bla Bla", bankValue: Nr_of_blabla }
+                        { bankName: "Standard bank", bankValue: Nr_of_Stdb, }
                     ];
 
                     MyBankDataSource.fetch(function () {
@@ -195,30 +186,16 @@
                     });
                     MyBankDataSource.sync();
 
-                    //APP.models.settings.ds.read();
+                    services = data.results.items;
 
-                    /*$("#bankListView").kendoMobileListView({
-                        dataSource: ({ data: bankList }),
-                        template: kendo.template($("#settingsTemplate").html()),
-                        alert: function (e) {
-                            alert(e.data.bankValue);
-                        }
-                });*/
-
-                    //var listView = $("#bankListView").data("kendoMobileListView");
-                    // refreshes the list view
-                    //listView.refresh();
-                    //listView.setDataSource(MyBankDataSource);
+                    MyServicesDataSource.fetch(function () {
+                        MyServicesDataSource.data(services);
+                    });
+                    MyServicesDataSource.sync();
                 })
-                //.done(function () {
-                //console.log("second success");
-                //})
                 .fail(function () {
                     console.log("error");
                 });
-                //.always(function () {
-                //console.log("complete");
-           // });
             hasLoaded = true;
         }
     };
