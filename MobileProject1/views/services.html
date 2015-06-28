@@ -3,10 +3,14 @@
 </div>
 
 <script type="text/x-kendo-template" id="settingsTemplate">
-    <a href="views/mapContainer.html">
-        <p>#: data.title #
-        #= data.vicinity #</p>
+    <a href="views/mapContainer.html" data-bind="events:{ click: listener}">
+        <p>
+            #: data.title #
+            #= data.vicinity #
+        </p>
         <p>#: data.distance #m</p>
+        <p>#= data.position[0] #</p>
+        <p>#= data.position[1] #</p>
     </a>
 </script>
 

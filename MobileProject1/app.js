@@ -1,5 +1,41 @@
+(function (g) {
+
+    var productId = "40af18cea6044ac7956b12a5a95da9ee"; // App unique product key
+
+    // Make analytics available via the window.analytics variable
+    // Start analytics by calling window.analytics.Start()
+    var analytics = g.analytics = g.analytics || {};
+    analytics.Start = function () {
+        // Handy shortcuts to the analytics api
+        var factory = window.plugins.EqatecAnalytics.Factory;
+        var monitor = window.plugins.EqatecAnalytics.Monitor;
+        // Create the monitor instance using the unique product key for Analytics
+        var settings = factory.CreateSettings(productId);
+        settings.LoggingInterface = factory.CreateTraceLogger();
+        factory.CreateMonitorWithSettings(settings,
+		  function () {
+		      console.log("Monitor created");
+		      // Start the monitor inside the success-callback
+		      monitor.Start(function () {
+		          console.log("Monitor started");
+		      });
+		  },
+		  function (msg) {
+		      console.log("Error creating monitor: " + msg);
+		  });
+    }
+    analytics.Stop = function () {
+        var monitor = window.plugins.EqatecAnalytics.Monitor;
+        monitor.Stop();
+    }
+    analytics.Monitor = function () {
+        return window.plugins.EqatecAnalytics.Monitor;
+    }
+})(window);
+
 (function () {
 
+    
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
     var app;
@@ -13,6 +49,8 @@
     var Nr_of_Stdb = 0;
     var Nr_of_Nedbank = 0;
     var Nr_of_Capitec = 0;
+    var BankLat = 0;
+    var BankLong = 0;
 
     var TotalServices = 0;
     var hasLoaded = false;
@@ -31,7 +69,7 @@
     });
 
     var mySelectedBank = [{
-        bank: selectedbank, lat: latitude, long: longitude
+        bank: selectedbank, lat: latitude, long: longitude, banklat: BankLat, banklong: BankLong
     }];
 
     var SelectedBank = new kendo.data.DataSource({
@@ -80,6 +118,10 @@
                     setTimeout(function (e) {
                         app.hideLoading();
                     }, 5000);
+                },
+                listener: function (e) {
+                    APP.models.map.ds._data[0].banklat = e.data.position[0];
+                    APP.models.map.ds._data[0].banklong = e.data.position[1];
                 }
             },
             map: {
@@ -89,9 +131,18 @@
         }
     };
 
+    document.addEventListener('pause', function () {
+        analytics.Stop();
+    }, false);
+
+    document.addEventListener('resume', function () {
+        analytics.Start();
+    }, false);
+
     // this function is called by Cordova when the application is loaded by the device
     document.addEventListener('deviceready', function () {
 
+        analytics.Start();
         // hide the splash screen as soon as the app is ready. otherwise
         // Cordova will wait 5 very long seconds to do it for you.
         navigator.splashscreen.hide();
@@ -123,6 +174,7 @@
         }
         else {
             console.log('Error : Geolocation is not supported by this browser.');
+            window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage("Error", "Error : Geolocation is not supported by this browser.");
         };
     };
 
@@ -143,9 +195,8 @@
         console.log("Got Latitude : " + latitude);
 
         if (!hasLoaded) {
-
             var request = $.getJSON(
-                'http://places.cit.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&size=500&app_id=mLJYk4GmHooykP8vSwER&app_code=XJ6-QI0pqxm9I-R0-EB5yw',
+                'http://places.cit.api.here.com/places/v1/discover/explore?at=' + latitude + '%2C' + longitude + '&cat=atm-bank-exchange&accept=application%2Fjson&size=500&app_id=IfyJSN02Memq46mhODA1&app_code=Vr08yzf6VgkrrLr3iTnqJg',
                 function (data) {
                     console.log("Total Banks found: " + data.results.items.length);
                     $.each(data.results.items, function (object) {
@@ -193,8 +244,9 @@
                     });
                     MyServicesDataSource.sync();
                 })
-                .fail(function () {
-                    console.log("error");
+                .fail(function (error) {
+                    PosError(error);
+                    window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage(error.code, "Error with location");
                 });
             hasLoaded = true;
         }

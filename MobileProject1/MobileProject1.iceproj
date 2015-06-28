@@ -156,12 +156,6 @@
     <Content Include="kendo\typescript\kendo.mobile.d.ts" />
     <Content Include="styles\kendo.mobile.flat.material-indigo.css" />
     <Content Include="views\map.html" />
-    <Content Include="Plugins\jshybugger-plugin-4.5.8\LICENSE" />
-    <Content Include="Plugins\jshybugger-plugin-4.5.8\plugin.xml" />
-    <Content Include="Plugins\jshybugger-plugin-4.5.8\README.md" />
-    <Content Include="Plugins\jshybugger-plugin-4.5.8\src\android\libs\jshybugger-library.jar" />
-    <Content Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\cordova\JsHybuggerPlugin.java" />
-    <Content Include="Plugins\jshybugger-plugin-4.5.8\www\jsHybuggerLoader.js" />
     <Content Include="styles\main.css" />
     <Content Include="views\home.html" />
     <Content Include="views\mapContainer.html" />
@@ -251,14 +245,6 @@
     <Folder Include="kendo\typescript\" />
     <Folder Include="views\" />
     <Folder Include="Plugins\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\libs\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\src\android\org\jshybugger\cordova\" />
-    <Folder Include="Plugins\jshybugger-plugin-4.5.8\www\" />
     <Folder Include="styles\" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />
