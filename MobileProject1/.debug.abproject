@@ -2,13 +2,13 @@
   "CordovaPluginVariables": {},
   "CorePlugins": [
     "com.telerik.plugin.eqatecanalytics",
-    "cordova-plugin-console",
-    "cordova-plugin-device",
-    "cordova-plugin-device-orientation",
-    "cordova-plugin-geolocation",
-    "cordova-plugin-inappbrowser",
-    "cordova-plugin-network-information",
-    "cordova-plugin-splashscreen",
+    "org.apache.cordova.console",
+    "org.apache.cordova.device",
+    "org.apache.cordova.device-orientation",
+    "org.apache.cordova.geolocation",
+    "org.apache.cordova.inappbrowser",
+    "org.apache.cordova.network-information",
+    "org.apache.cordova.splashscreen",
     "hu.dpal.phonegap.plugins.SpinnerDialog@1.3.1"
   ]
 }

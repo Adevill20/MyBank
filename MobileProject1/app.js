@@ -105,6 +105,9 @@
                 },
                 listener: function (e) {
                     APP.models.map.ds._data[0].bank = e.data.bankName;
+                    console.log("Bank Selected : " + e.data.bankName);
+                    window.plugins.EqatecAnalytics.Monitor.TrackFeature(e.data.bankName);
+                    app.navigate("views/services.html");
                 },
                 tempval: 32
             },
@@ -122,6 +125,9 @@
                 listener: function (e) {
                     APP.models.map.ds._data[0].banklat = e.data.position[0];
                     APP.models.map.ds._data[0].banklong = e.data.position[1];
+                    console.log("Service Selected : " + e.data.vicinity);
+                    window.plugins.EqatecAnalytics.Monitor.TrackFeatureValue(APP.models.map.ds._data[0].bank , e.data.vicinity);
+                    app.navigate("views/mapContainer.html");
                 }
             },
             map: {
@@ -245,8 +251,9 @@
                     MyServicesDataSource.sync();
                 })
                 .fail(function (error) {
-                    PosError(error);
-                    window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage(error.code, "Error with location");
+                    console.log("PLACES API ERROR : " + error.code);
+                    //PosError(error);
+                    window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage(error.code, "PLACES API ERROR");
                 });
             hasLoaded = true;
         }
