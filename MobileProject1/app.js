@@ -88,6 +88,8 @@
         data: services
     });
 
+    var watchID = null;
+
     // create an object to store the models for each view
     window.APP = {
         models: {
@@ -126,7 +128,7 @@
                     APP.models.map.ds._data[0].banklat = e.data.position[0];
                     APP.models.map.ds._data[0].banklong = e.data.position[1];
                     console.log("Service Selected : " + e.data.vicinity);
-                    window.plugins.EqatecAnalytics.Monitor.TrackFeatureValue(APP.models.map.ds._data[0].bank , e.data.vicinity);
+                    window.plugins.EqatecAnalytics.Monitor.TrackFeature(APP.models.map.ds._data[0].bank + "." + e.data.vicinity);
                     app.navigate("views/mapContainer.html");
                 }
             },
@@ -139,10 +141,16 @@
 
     document.addEventListener('pause', function () {
         analytics.Stop();
+        if (navigator.geolocation) {
+            navigator.geolocation.clearWatch(watchID);
+            console.log("Geolocation Watch Stopped");
+        }
+
     }, false);
 
     document.addEventListener('resume', function () {
         analytics.Start();
+        DeviceReady();
     }, false);
 
     // this function is called by Cordova when the application is loaded by the device
@@ -174,14 +182,24 @@
     }, false);
 
     function DeviceReady() {
-
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(GotPosition, PosError);
+            var option1 = { timeout: 30000 };
+            watchID = navigator.geolocation.watchPosition(onSuccess, onError, option1);
+            console.log("Geolocation Watch Started");
+            var options = { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true };
+            navigator.geolocation.getCurrentPosition(GotPosition, PosError, options);
         }
         else {
             console.log('Error : Geolocation is not supported by this browser.');
             window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage("Error", "Error : Geolocation is not supported by this browser.");
         };
+    };
+
+    function onSuccess(position) {
+        longitude = position.coords.longitude;
+        latitude = position.coords.latitude;
+        //console.log("Got Longitude : " + longitude);
+        //console.log("Got Latitude : " + latitude);
     };
 
     function GotPosition(position) {
@@ -250,10 +268,10 @@
                     });
                     MyServicesDataSource.sync();
                 })
-                .fail(function (error) {
-                    console.log("PLACES API ERROR : " + error.code);
-                    //PosError(error);
-                    window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage(error.code, "PLACES API ERROR");
+                .fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    console.log("PLACES API ERROR : " + err);
+                    window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage(err, "PLACES API ERROR");
                 });
             hasLoaded = true;
         }
@@ -272,8 +290,14 @@
                 break;
             case error.UNKNOWN_ERROR:
                 console.log('Error : "An unknown error occurred.');
+                window.plugins.EqatecAnalytics.Monitor.TrackExceptionMessage(error, "Unknown Location Error");
                 break;
         }
+    };
+
+    function onError(error) {
+        alert('code: ' + error.code + '\n' +
+              'message: ' + error.message + '\n');
     };
 
 }());

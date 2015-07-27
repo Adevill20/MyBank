@@ -144,6 +144,7 @@
     <Content Include="index.html" />
     <Content Include="jquery.knob.min.js" />
     <Content Include="kendo\js\jquery.min.js" />
+    <Content Include="kendo\js\jquery.min.old.js" />
     <Content Include="kendo\js\kendo.mobile.min.js" />
     <Content Include="kendo\styles\images\back.png" />
     <Content Include="kendo\styles\images\kendoui.svg" />
